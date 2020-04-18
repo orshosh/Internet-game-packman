@@ -3,19 +3,106 @@
 	<head>
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css"/>
+
+		
+		<SCRIPT type="text/javascript">  
+			function register() 
+			   {
+				$("#open").css("display", "none");
+				$("#loginPage").css("display","none");
+				$("#registerPage").css("display","initial");
+			   }   
+			
+			function logIn() 
+			   {
+				$("#open").css("display", "none");
+				$("#registerPage").css("display","none");
+				$("#loginPage").css("display","initial");
+			   } 
+			   function save() 
+   {
+      userName=document.getElementById("userName");
+      name=document.getElementById("name");
+      password=document.getElementById("psw");
+      varifiedPassword=document.getElementById("psw-repeat");
+      email=document.getElementById("email");
+      birthday=document.getElementById("birthday");
+    checkInput();
+
+   } 
+
+			
+			</SCRIPT>
+
+
 	</head>
 
 	<body>
-		<div id="score">
+		<div class="openWindow" id="open">	
+			<picture id="logo">
+				<img src="pacmanLogo.JPG" />
+			</picture>
+			<button class="button" onclick="register()" id="register" >Register</button>
+			<button class="button" onclick="logIn()" id="login">Login</button>
+		</div>
+
+		<div id="registerPage">
+			<form action="action_page.php">
+				<div class="container">
+				  <h1>Register</h1>
+				  <p>Please fill in this form to create an account.</p>
+				  <hr>
+				
+				  <label for="userName"><b>User Name</b></label>
+				  <input type="text" placeholder="Enter User Name" name="userName" required>
+
+				  <label for="name"><b>Name</b></label>
+				  <input type="text" placeholder="Enter Full Name" name="name" required>
+
+				  <label for="email"><b>Email</b></label>
+				  <input type="text" placeholder="Enter Email" name="email" required>
+
+				  
+				<label for="birthday"><b>Birthday</b></label>
+				<input type="date" placeholder="Enter Birthday" name="birthday" required>
+				
+				  <label for="psw"><b>Password</b></label>
+				  <input type="password" placeholder="Enter Password" name="psw" required>
+			  
+				  <label for="psw-repeat"><b>Repeat Password</b></label>
+				  <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+				  <hr>
+			  
+				  <p><a href="#" ></a></p>
+				  <button type="submit" class="registerbtn" onclick="save()">Register</button>
+				</div>
+			  
+				<div class="container signin">
+				  <p>Already have an account? <a href="#" onclick="logIn()">Sign in</a>.</p>
+				</div>
+			  </form>
+			
+		</div>
+		
+		<div id="loginPage">
+			log in
+		</div>
+
+
+		<div class="gameWindow" id="score">
 			<label for="lblScore">SCORE:</label>
 			<input id="lblScore" type="text" />
 		</div>
-		<div id="time">
+		<div class="gameWindow" id="time">
 			<label for="lblTime">TIME:</label>
 			<input id="lblTime" type="text" />
 		</div>
-		<div id="game">
+		<div class="gameWindow" id="game">
 			<canvas id="canvas" height="600" width="600"></canvas>
 		</div>
+
+
+		<script id="sign" type="text/javascript" src="./signIn.js"></script>
 	</body>
 </html>
