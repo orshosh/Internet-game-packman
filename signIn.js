@@ -5,20 +5,22 @@ var email;
 var varifiedPassword;
 var birthday;
 
-function save() 
+function saveInputs() 
    {
-      userName=document.getElementById("userName");
-      name=document.getElementById("name");
-      password=document.getElementById("psw");
-      varifiedPassword=document.getElementById("psw-repeat");
-      email=document.getElementById("email");
-      birthday=document.getElementById("birthday");
-    checkInput();
+      userName=document.getElementsByName("userName");
+      localStorage.getItem("userName",userName.values);
+      name=document.getElementsByName("name");
+      password=document.getElementsByName("psw");
+      varifiedPassword=document.getElementsByName("psw-repeat");
+      email=document.getElementsByName("email");
+      birthday=document.getElementsByName("birthday");
+      checkInput();
 
    }  
 
 function checkInput(){
-    if(user==null || name==null || password==null || varifiedPassword==null || email==null || birthday==null){
-        alert("wronggggg");
+    if(userName.getItem == undefined|| name.getItem==undefined || password.getItem==undefined || varifiedPassword.getItem==undefined || email.getItem==undefined || birthday.getItem==undefined){
+        alert("worng");
+        
     }
 }
