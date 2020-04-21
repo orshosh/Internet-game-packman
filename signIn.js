@@ -1,11 +1,13 @@
 var users = new Array();
 var passwords = new Array();
+var uName;
+var uPass;
 
 $(document).ready(function() {
+  
     users[0]="p";
     passwords[0]="p";
 
-    
 });
 
 
@@ -17,7 +19,11 @@ function checkInput(){
               required: true,
               onlyLetters:true
           },
-          userName: "required",
+          userName: {
+            required: true,
+            
+
+        },
           email: {
             required: true,
             email: true
@@ -25,7 +31,8 @@ function checkInput(){
           psw: {
             required: true,
             minlength: 6,
-            lettersAndNumbers: true
+            lettersAndNumbers: true,
+            
           },
           psw_repeat: {
               required: true,
@@ -58,36 +65,72 @@ function checkInput(){
     
       });
 
-      let value1 = $("#userName").val(); 
-      users[1]=value1;
-      let password2 = $("#psw").val();
-      passwords[1]=password2;
+      uName = $("#userName").val();
+      localStorage.setItem("uName",uName);
+      // users.push(uName);
+      uPass = $("#psw").val();
+      localStorage.setItem("uPass",uPass);
+      passwords.push(uPass);
+      
+      // let value1 = $("#userName").val(); 
+      // users.insert(1,value1);
+      // let password2 = $("#psw").val();
+      // passwords,insert(1,password2);
+      
+
+      
     
 }
 
 function checkUser(){
     
+    
     $("#logR").validate({
+
+                // required: true
+                // //  params: ["#psw2"],   
+                // // userExists: params
+
         rules: {
             userName2:{
-                // params: ["#psw2"],   
-                userExists: ["userName2","#psw2"]
+              required:true,
+              userExists: ['psw2']
+
+            } ,
+            psw2: {
+              required: true,
+
             }
-        },
-    
-        errorPlacement: function (error, element) {
-            error.insertBefore(element);s
-          }
+          },
+          messages: {
+            userName2: {
+              required:"Please enter your user name",
+            },
+            psw2: {
+              required: "Please provide a password",
+            }
+
+          },
+          errorPlacement: function (error, element) {
+              error.insertBefore(element);
+            }
     });
     
     
 }
 
+function welcome(){
+  $("#registerPage").css("display","none");
+  $("#loginPage").css("display","none");
+  $("#gameWindow").css("display","none");
+  $("#open").css("display", "initial");
+}
 
 function register() 
 {
  $("#open").css("display", "none");
  $("#loginPage").css("display","none");
+ $("#gameWindow").css("display","none");
  $("#registerPage").css("display","initial");
 }   
 
@@ -95,6 +138,7 @@ function logIn()
 {
  $("#open").css("display", "none");
  $("#registerPage").css("display","none");
+ $("#gameWindow").css("display","none");
  $("#loginPage").css("display","initial");
  
  
@@ -111,14 +155,37 @@ $.validator.addMethod('lettersAndNumbers',function(value,element){
 'Password must contains letters and numbers')
 
 
-$.validator.addMethod('userExists',function(value,element,params){
-    if(!users.includes(param[0])){
+$.validator.addMethod('userExists',function(value,element,param){
+    users[1]=localStorage.getItem("uName");
+    passwords[1]=localStorage.getItem("uPass");
+
+    if(!users.includes(value)){
         return false;
     }
-    let index = users.indexOf(param[0]);
-    if(!params[0].equalTo(passwords[index])){
+    let index = users.indexOf(value);
+    let pass = $('#'+param[0]).val();
+    if(pass!=(passwords[index])){
         return false;
     }
     return true;
 },
 'Wrong user name or password')
+
+
+function openDialog() { 
+  // document.getElementById("about").showModal(); 
+ 
+    // $( "#about" ).dialog();
+
+    $("#modelBox").css("display","block");
+    
+
+}
+
+function closeDialog(){
+  $("#modelBox").css("display","none");
+}
+
+
+
+
