@@ -6,8 +6,11 @@
 		<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
 		<script type="text/javascript" src="./signIn.js"></script>
-
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		
 		<link rel="stylesheet" type="text/css" href="style.css"/>
+
 
 		
 	
@@ -16,6 +19,20 @@
 	</head>
 
 	<body>
+		<div class="toolBar" id="toolBar" >
+			<img id="logo" src="pacmanLogo.JPG"  width="60px" height="45px" />
+		<ul>
+			
+			<li><a href="#" onclick="welcome()">Welcome</a></li>
+			<li><a href="#" onclick="register()">Register</a></li>
+			<li><a href="#" onclick="logIn()">Log In</a></li>
+			<li><a href="#" onclick="openDialog()">About</a></li>
+		
+		  </ul>
+		</div>
+
+
+
 		<div class="openWindow" id="open">	
 			<picture id="logo">
 				<img src="pacmanLogo.JPG" />
@@ -66,11 +83,12 @@
 				  <label for="userName2"><b>User Name</b></label>
 				  <input type="text" id="userName2" placeholder="UserName" name="userName2" >
 
-				  <label for="psw"><b>Password</b></label>
+				  <label for="psw2"><b>Password</b></label>
 				  <input type="password" placeholder="*************" name="psw2" id="psw2" >
 
 				  <p><a href="#" ></a></p>
-				  <button type="Log in" class="loginbtn" onclick="checkUser()" >Log in</button>
+				  <button type="submit" class="loginbtn" onclick="checkUser()" >Log in</button>
+				  <p id="signinLink">Don't have an account? <a href="#" onclick="register()">Register</a>.</p>
 				</div>
 			  </form>
 		</div>
@@ -88,5 +106,27 @@
 			<canvas id="canvas" height="600" width="600"></canvas>
 		</div>
 
+		<dialog class="modelBox" id="modelBox">
+		<div class="modal" id="myModal">
+			<span class="close" onclick="closeDialog()">&times;</span>
+			<p>Some text in the Modal..</p>
+		</div>
+		</dialog>
+
+	<script type="text/javascript">
+		
+var modal = document.getElementById("modelBox");
+window.onclick = function(event) {
+  if (event.target == modal ) {
+    $("#modelBox").css("display","none");
+  }
+}
+$(window).keyup(function(event){
+	if(event.keyCode===27){
+		$("#modelBox").css("display","none");
+	}
+});
+
+	</script>
 	</body>
 </html>
