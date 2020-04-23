@@ -73,13 +73,6 @@ function checkInput(){
       localStorage.setItem("uPass",uPass);
       passwords.push(uPass);
       
-      // let value1 = $("#userName").val(); 
-      // users.insert(1,value1);
-      // let password2 = $("#psw").val();
-      // passwords,insert(1,password2);
-      
-
-      
     
 }
 
@@ -87,10 +80,6 @@ function checkUser(){
     
     
     $("#logR").validate({
-
-                // required: true
-                // //  params: ["#psw2"],   
-                // // userExists: params
 
         rules: {
             userName2:{
@@ -121,10 +110,12 @@ function checkUser(){
 }
 
 function welcome(){
+  
   $("#registerPage").css("display","none");
   $("#loginPage").css("display","none");
-  $("#gameWindow").css("display","none");
-  $("#open").css("display", "initial");
+  $("gameWindow").css("display","none");
+  $("modelBox").css("display","none");
+  $("#open").css("display", "block");
 }
 
 function register() 
@@ -132,16 +123,16 @@ function register()
 
  $("#open").css("display", "none");
  $("#loginPage").css("display","none");
- $("#gameWindow").css("display","none");
- $("#registerPage").css("display","initial");
+ $("gameWindow").css("display","none");
+ $("#registerPage").css("display","block");
 }   
 
 function logIn() 
 {
  $("#open").css("display", "none");
  $("#registerPage").css("display","none");
- $("#gameWindow").css("display","none");
- $("#loginPage").css("display","initial");
+ $("gameWindow").css("display","none");
+ $("#loginPage").css("display","block");
  
  
 } 

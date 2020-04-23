@@ -6,21 +6,13 @@
 		<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
 		<script type="text/javascript" src="./signIn.js"></script>
-		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		
 		<link rel="stylesheet" type="text/css" href="style.css"/>
-
-
-		
-	
-
 
 	</head>
 
 	<body>
 		<div class="toolBar" id="toolBar" >
-			<img id="logo" src="pacmanLogo.JPG"  width="60px" height="45px" />
+			<img id="logo" src="images/pacmanLogo.JPG"  width="60px" height="45px" />
 		<ul>
 			
 			<li><a href="#" onclick="welcome()">Welcome</a></li>
@@ -31,20 +23,23 @@
 		  </ul>
 		</div>
 
-
-
-		<div class="openWindow" id="open">	
-			<picture id="logo">
-				<img src="pacmanLogo.JPG" />
-			</picture>
+		<div class="container" id="container">
+		<div class="openWindow" id="open">
+		
+			<h1 id="mainPage">Corona</h1>	
+			<!-- <picture id="openImg">
+				<img src="images/pacmanLogo.JPG" />
+			</picture> -->
+			<div class="buton_open">
 			<button class="openButton" onclick="register()" id="register" >Register</button>
 			<button class="openButton" onclick="logIn()" id="login">Login</button>
+			</div>
 		</div>
 
 		<div id="registerPage" >
 			<form class="regWindow" action="#" name="formR" id="formR">
 				<div class="box">
-				  <h1>Register</h1>
+				  <h1 id="regPage">Register</h1>
 				  <p >Please fill in this form to create an account.</p>
 				  <hr>
 				  <label for="name"><b>Full Name</b></label>
@@ -77,7 +72,7 @@
 		<div id="loginPage">
 			<form class="logWindow" action="#" name="logR" id="logR">
 				<div class="box">
-				  <h1>Log In</h1>
+				  <h1 id="logPage">Log In</h1>
 				  <p >Please enter your user name and password to log in.</p>
 				  <hr>
 				  <label for="userName2"><b>User Name</b></label>
@@ -112,6 +107,7 @@
 			<p>Some text in the Modal..</p>
 		</div>
 		</dialog>
+	</div>
 
 	<script type="text/javascript">
 		
