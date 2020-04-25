@@ -6,7 +6,6 @@ var pac_color;// צבע הפקמן
 var start_time; //הזמן שהתחלנו
 var time_elapsed; // הזמן שנשאר למשחק
 var interval; // הרצת פונקציה של עדכון המשחק בצורה מחזורית בהתאם לזמן והפעולות
-var imageRight= new Image;
 var before;
 
 
@@ -14,24 +13,21 @@ var left=37;
 var right=39;
 var up=38;
 var down=40;
-var balls;
+var food_remain=50;
+var mainp= "#7FFFD4";
 
 $(document).ready(function() {
 
-	context = canvas.getContext("2d");
-	before=4;
-	Start();
+
 });
 
 function Start() {
+	mainp=$("#mainC").val();
 	board = new Array();
 	score = 0;
-	pac_color = "yellow";
+	pac_color = mainp;
 	var cnt = 100; // אחוזים
-	food_remain=balls;
-	//  food_remain=$('#settings').find('input[name="food"]').val();
-	 console.log(food_remain);
-	// food_remain=$("#food").val();// אוכל שיהיה במשחק
+	var food_remain= $("#food").val();
 	var pacman_remain = 1;// כמות הפעמים שמשנים את מקום הפקמן במשחק כמו בוליאני
 	start_time = new Date();
 	for (var i = 0; i < 10; i++) {  //// השמת קירות
@@ -203,6 +199,8 @@ function Draw(y) {
 }
 
 function UpdatePosition() {
+	foodCount=$("#food").val();
+	console.log(foodCount);
 	board[shape.i][shape.j] = 0; // מוחקים את פקמן מהמערך
 	var x = GetKeyPressed(); //  מושכים את המיקום האחרון של הפקמן ומשנים את המיקום בהתאם
 	if (x == 1) {
@@ -256,6 +254,9 @@ function game()
  $("#loginPage").css("display","none");
  $("#settings").css("display","none");
  $("#gameC").css("display","block");
+ context = canvas.getContext("2d");
+ before=4;
+ Start();
  
 //  up=document.getElementById("up").keyCode();
 //  alert(up);
@@ -263,8 +264,11 @@ function game()
 } 
 
 function checkSetting(){
-    
-    
+	if(document.getElementById("randomly").checked){
+		document.getElementById("food").value=50;
+		game();
+	}
+	else{
     $("#settingForm").validate({
 
         rules: {
@@ -282,10 +286,13 @@ function checkSetting(){
 			},
 			food:{
 				required: true,
+			},
+			gameTime:{
+				required: true,
 			}
+
           },
-          submitHandler: function(form){
-			 balls = $('#settings').find('input[name="food]').val();
+          submitHandler: function(){
 			game();
           },
           messages: {
@@ -300,6 +307,7 @@ function checkSetting(){
     });
  
 
-  
+}
     
 }
+
