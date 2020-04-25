@@ -7,7 +7,7 @@ $(document).ready(function() {
   
     users[0]="p";
     passwords[0]="p";
-    $("registerPage").urlParams.append('page',1);
+    // $("registerPage").urlParams.append('page',1);
 
 });
 
@@ -44,6 +44,9 @@ function checkInput(){
           birthday: "required"
 
         },
+        submitHandler: function(){
+          set();
+        },
         messages: {
           name: {
               required: "Please enter your name",
@@ -73,6 +76,8 @@ function checkInput(){
       localStorage.setItem("uPass",uPass);
       passwords.push(uPass);
       
+     
+    
     
 }
 
@@ -92,6 +97,9 @@ function checkUser(){
 
             }
           },
+          submitHandler: function(){
+            set();
+          },
           messages: {
             userName2: {
               required:"Please enter your user name",
@@ -104,8 +112,12 @@ function checkUser(){
           errorPlacement: function (error, element) {
               error.insertBefore(element);
             }
+
+   
     });
-    
+ 
+
+  
     
 }
 
@@ -113,8 +125,9 @@ function welcome(){
   
   $("#registerPage").css("display","none");
   $("#loginPage").css("display","none");
-  $("gameWindow").css("display","none");
+  $("#gameC").css("display","none");
   $("modelBox").css("display","none");
+  $("#settings").css("display","none");
   $("#open").css("display", "block");
 }
 
@@ -123,16 +136,33 @@ function register()
 
  $("#open").css("display", "none");
  $("#loginPage").css("display","none");
- $("gameWindow").css("display","none");
+ $("#gameC").css("display","none");
+ $("#settings").css("display","none");
  $("#registerPage").css("display","block");
 }   
 
 function logIn() 
 {
+
  $("#open").css("display", "none");
  $("#registerPage").css("display","none");
- $("gameWindow").css("display","none");
+ $("#gameC").css("display","none");
+ $("#settings").css("display","none");
  $("#loginPage").css("display","block");
+ 
+ 
+ 
+} 
+
+
+function set() 
+{
+
+ $("#open").css("display", "none");
+ $("#registerPage").css("display","none");
+ $("#loginPage").css("display","none");
+ $("#gameC").css("display","none");
+ $("#settings").css("display","block");
  
  
 } 

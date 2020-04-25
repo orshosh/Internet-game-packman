@@ -34,11 +34,12 @@
 			</div>
 		</div>
 		<div id="registerPage" >
-			<form class="regWindow" action="#" name="formR" id="formR">
+			<form class="regWindow"  name="formR" id="formR">
 				<div class="box">
 				  <h1 id="regPage">Register</h1>
 				  <p >Please fill in this form to create an account.</p>
-				  <hr>
+				
+				  <hr >
 				  <label for="name"><b>Full Name</b></label>
 				  <input type="text" placeholder="Name" name="name" id="name" >
 				
@@ -57,16 +58,18 @@
 				  <label for="psw-repeat"><b>Repeat Password</b></label>
 				  <input type="password" placeholder="*************" name="psw_repeat" >
 				  <hr>
-			  
+			
 				  <p><a href="#" ></a></p>
 				  <button type="submit" class="registerbtn" onclick="checkInput()" >Register</button>
 				  <p id="signinLink">Already have an account? <a href="#" onclick="logIn()">Sign in</a>.</p>
+				  
 				</div>
-			  </form>
+				</form>
+			  
 			
 		</div>
 		<div id="loginPage">
-			<form class="logWindow" action="#" name="logR" id="logR">
+			<form class="logWindow" name="logR" id="logR">
 				<div class="box">
 				  <h1 id="logPage">Log In</h1>
 				  <p >Please enter your user name and password to log in.</p>
@@ -83,17 +86,17 @@
 				</div>
 			  </form>
 		</div>
-		<div class="gameWindow" id="score">
-			<label for="lblScore">SCORE:</label>
-			<input id="lblScore" type="text" />
-		</div>
+		<div id="gameC">
 		<div class="gameWindow" id="time">
 			<label for="lblTime">TIME:</label>
 			<input id="lblTime" type="text" />
+			<label for="lblScore">SCORE:</label>
+			<input id="lblScore" type="text" />
 		</div>
 		<div class="gameWindow" id="game">
 			<canvas id="canvas" height="600" width="600"></canvas>
 		</div>
+	</div>
 
 		<dialog class="modelBox" id="modelBox">
 		<div class="modal" id="myModal">
@@ -101,7 +104,40 @@
 			<p>Some text in the Modal..</p>
 		</div>
 		</dialog>
+
+
+<div id="settings" class="settings">
+	<form class="settingForm" name="settingForm" id="settingForm">
+		<div class="box">
+		  <h1 id="setPage">Settings</h1>
+		  <p >Please enter your settings game</p>
+		  <hr>
+		  <label for="up"><b>Up key:</b></label>
+		  <input type="text" id="up" placeholder="Up key" name="up" >
+
+		  <label for="down"><b>Down key</b></label>
+		  <input type="text" placeholder="Down key" name="down" id="down" >
+
+		  <label for="left"><b>Left key</b></label>
+		  <input type="text" placeholder="Left key" name="left" id="left" >
+
+		  <label for="right"><b>Right key</b></label>
+		  <input type="text" placeholder="Right key" name="right" id="right" >
+
+		  <label for="food"><b>Number of corona virus</b></label>
+		  <input type="number" min="50" max="90" name="food" id="food" >
+
+		  <p><a href="#" ></a></p>
+		  <button type="submit" class="loginbtn" onclick="checkSetting()" >Log in</button>
+		</div>
+	  </form>
+		</div>
+
+
+
+
 	</div>
+
 
 	<script type="text/javascript">
 		

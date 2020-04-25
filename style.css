@@ -5,7 +5,7 @@
 
   /*///////////////open window//////////////*/
 
-.gameWindow{
+#gameC{
     display:none;
 }
 body{
@@ -39,7 +39,7 @@ html{
   
 }
 
-.openButton {
+.openButton ,#startGame{
   font-family: packman;
   text-align: center;
   width: 200px;
@@ -251,6 +251,20 @@ html{
   text-decoration: none;
   cursor: pointer;
 }
+
+#settings{
+  display: none;
+}
+
+#time label{
+  padding-left: 200px;
+  display: inline-block;
+}
+
+
+
+
+
 
 
  
