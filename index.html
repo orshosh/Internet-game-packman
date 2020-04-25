@@ -13,29 +13,26 @@
 	<body>
 		<div class="toolBar" id="toolBar" >
 			<img id="logo" src="images/pacmanLogo.JPG"  width="60px" height="45px" />
-		<ul>
-			
+		<ul>	
 			<li><a href="#" onclick="welcome()">Welcome</a></li>
 			<li><a href="#" onclick="register()">Register</a></li>
 			<li><a href="#" onclick="logIn()">Log In</a></li>
 			<li><a href="#" onclick="openDialog()">About</a></li>
-		
 		  </ul>
 		</div>
 
-		<div class="container" id="container">
+		<div class="container">
 		<div class="openWindow" id="open">
 		
-			<h1 id="mainPage">Corona</h1>	
+			<div id="mainPage">Corona</div>	
 			<!-- <picture id="openImg">
 				<img src="images/pacmanLogo.JPG" />
 			</picture> -->
-			<div class="buton_open">
+			<div class="flex-container">
 			<button class="openButton" onclick="register()" id="register" >Register</button>
 			<button class="openButton" onclick="logIn()" id="login">Login</button>
 			</div>
 		</div>
-
 		<div id="registerPage" >
 			<form class="regWindow" action="#" name="formR" id="formR">
 				<div class="box">
@@ -68,7 +65,6 @@
 			  </form>
 			
 		</div>
-		
 		<div id="loginPage">
 			<form class="logWindow" action="#" name="logR" id="logR">
 				<div class="box">
@@ -87,8 +83,6 @@
 				</div>
 			  </form>
 		</div>
-
-
 		<div class="gameWindow" id="score">
 			<label for="lblScore">SCORE:</label>
 			<input id="lblScore" type="text" />
