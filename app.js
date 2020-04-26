@@ -244,8 +244,13 @@ function UpdatePosition() {
 		}
 	}
 	if (board[shape.i][shape.j] == 1) {  // אם זה אוכל נעדכן את הניקוד של המשתמש
-		score++;
+		score=score+5;
+	} else if (board[shape.i][shape.j] == 5) {  // אם זה אוכל נעדכן את הניקוד של המשתמש
+		score=score+25;
+	}else if (board[shape.i][shape.j] == 6) {  // אם זה אוכל נעדכן את הניקוד של המשתמש
+		score=score+15;
 	}
+	
 	board[shape.i][shape.j] = 2; // משנים את מיקום הפקמן במערך
 	var currentTime = new Date(); 
 	time_elapsed = (currentTime - start_time) / 1000; // כמות הזמן שנשארת
@@ -300,7 +305,6 @@ function checkSetting(){
 		document.getElementById("mainC").value="#7FFFD4";
 		document.getElementById("middleC").value="#FF6347";
 		document.getElementById("lowC").value="#C0C0C0";
-		document.getElementById("food").value=50;
 		game();
 	}
 	else{
