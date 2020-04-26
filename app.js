@@ -13,7 +13,7 @@ var left=37;
 var right=39;
 var up=38;
 var down=40;
-var food_remain=50;
+var food_remain=90;
 var mainp= "#7FFFD4";
 var middlep="#FF6347";
 var lowp="#C0C0C0";
@@ -35,15 +35,15 @@ function Start() {
 	var pacman_remain = 1;// כמות הפעמים שמשנים את מקום הפקמן במשחק כמו בוליאני
 	start_time = new Date();
 	var monstersLeft=0;
-	for (var i = 0; i < 10; i++) {  //// השמת קירות
+	for (var i = 0; i < 14; i++) {  //// השמת קירות
 		board[i] = new Array();
 		//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
 		for (var j = 0; j < 10; j++) {
 			if(
 				(i == 0 && j == 0) ||
 				(i == 0 && j == 9) ||
-				(i == 9 && j == 0) ||
-				(i == 9 && j == 9) 
+				(i == 13 && j == 0) ||
+				(i == 13 && j == 9) 
 				
 			){
 				if(monstersLeft<numMonster){
@@ -59,7 +59,7 @@ function Start() {
 				(i == 6 && j == 1) ||
 				(i == 6 && j == 2) ||
 				(i==6 && j==8) ||
-				(i==5&&j==8)
+				(i==5 && j==8)
 			) {
 				board[i][j] = 4; ///  קירות=4
 			} else {
@@ -84,7 +84,7 @@ function Start() {
 				} else {
 					board[i][j] = 0; // חלק ריק
 				}
-				cnt--;
+				//cnt--;
 			}
 		}
 	}
@@ -125,28 +125,17 @@ function Start() {
 
 
 function findRandomEmptyCell(board) { // מוצאת תאים רנדומלים ריקים
-	var i = Math.floor(Math.random() * 9 + 1);
+	var i = Math.floor(Math.random() * 13 + 1);
 	var j = Math.floor(Math.random() * 9 + 1);
 	while (board[i][j] != 0) {
-		i = Math.floor(Math.random() * 9 + 1);
+		i = Math.floor(Math.random() * 13 + 1);
 		j = Math.floor(Math.random() * 9 + 1);
 	}
 	return [i, j];
 }
 
 function GetKeyPressed() {
-	// $("#up").keyup(function(event){
-	// 	window.up=event.keyCode;
-	// });
-	// $("#down").keyup(function(event){
-	// 	window.down=event.keyCode;
-	// });
-	// $("#left").keyup(function(event){
-	// 	window.left=event.keyCode;
-	// });
-	// $("#right").keyup(function(event){
-	// 	window.right=event.keyCode;
-	// });
+
 	if (keysDown[up]) {
 		return 1;
 	}
@@ -166,7 +155,7 @@ function Draw(y) {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score; // עדכון התוצאה
 	lblTime.value = time_elapsed; // עדכון הזמן
-	for (var i = 0; i < 10; i++) {
+	for (var i = 0; i < 14; i++) {
 		for (var j = 0; j < 10; j++) {
 			var center = new Object(); // איפה מציירים
 			center.x = i * 60 + 30; 
@@ -276,7 +265,7 @@ function UpdatePosition() {
 		}
 	}
 	if (x == 4) {
-		if (shape.i < 9 && board[shape.i + 1][shape.j] != 4) {
+		if (shape.i < 13 && board[shape.i + 1][shape.j] != 4) {
 			shape.i++;
 		}
 	}

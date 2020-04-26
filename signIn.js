@@ -75,15 +75,10 @@ function checkInput(){
       uPass = $("#psw").val();
       localStorage.setItem("uPass",uPass);
       passwords.push(uPass);
-      
-     
-    
-    
+   
 }
 
 function checkUser(){
-    
-    
     $("#logR").validate({
 
         rules: {
@@ -113,12 +108,7 @@ function checkUser(){
               error.insertBefore(element);
             }
 
-   
-    });
- 
-
-  
-    
+    });  
 }
 
 function welcome(){
@@ -143,15 +133,12 @@ function register()
 
 function logIn() 
 {
-
  $("#open").css("display", "none");
  $("#registerPage").css("display","none");
  $("#gameC").css("display","none");
  $("#settings").css("display","none");
  $("#loginPage").css("display","block");
- 
- 
- 
+
 } 
 
 
@@ -163,8 +150,7 @@ function set()
  $("#loginPage").css("display","none");
  $("#gameC").css("display","none");
  $("#settings").css("display","block");
- 
- 
+
 } 
 
 $.validator.addMethod('onlyLetters',function(value,elemnt){
@@ -196,13 +182,7 @@ $.validator.addMethod('userExists',function(value,element,param){
 
 
 function openDialog() { 
-  // document.getElementById("about").showModal(); 
- 
-    // $( "#about" ).dialog();
-
     $("#modelBox").css("display","block");
-    
-
 }
 
 function closeDialog(){
