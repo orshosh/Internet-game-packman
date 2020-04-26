@@ -48,7 +48,15 @@ function Start() {
 				var randomNum = Math.random();
 				if (randomNum <= (1.0 * food_remain) / cnt) { /// אם המספר הרנדומלי הוא מעל אחוז האוכל שנשאר
 					food_remain--;
-					board[i][j] = 1; //// אוכל =1
+					var randomColor=Math.random();
+					if(randomColor>=0.9){
+						board[i][j] = 5; /// lowP
+					}else if( randomColor>=0.6 && randomColor<0.9){
+						board[i][j] = 6;// middleP
+					}
+					else{
+					board[i][j] = 1; // mainP
+					}
 				} else if (randomNum < (1.0 * (pacman_remain + food_remain)) / cnt) { 
 					/// אם הפקמן עוד לא הוגדר
 					shape.i = i; // שמירת מיקום הפקמן
@@ -195,6 +203,16 @@ function Draw(y) {
 				context.rect(center.x - 30, center.y - 30, 60, 60);
 				context.fillStyle = "grey"; //color
 				context.fill();
+			}else if(board[i][j] == 5){
+				context.beginPath();
+				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
+				context.fillStyle = lowp; //color
+				context.fill();
+			} else if(board[i][j] == 6){
+				context.beginPath();
+				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
+				context.fillStyle = middlep; //color
+				context.fill();
 			}
 		}
 	}
@@ -260,8 +278,6 @@ function game()
  before=4;
  setVariables();
  
-//  up=document.getElementById("up").keyCode();
-//  alert(up);
  
 } 
 
