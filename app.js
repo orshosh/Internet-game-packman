@@ -295,6 +295,14 @@ function setVariables(){
 	lowp=$("#lowC").val();
 	gameTime=$("#gameTime").val();
 	numManster=$("#monsterNum").val();
+	var inputup = $("#up").val();
+	window.up = inputup.charCodeAt()-32;
+	var inputdown = $("#down").val();
+	window.down = inputdown.charCodeAt()-32;
+	var inputleft = $("#left").val();
+	window.left = inputleft.charCodeAt()-32;
+	var inputright = $("#right").val();
+	window.right = inputright.charCodeAt()-32;
 	Start();
 }
 
