@@ -261,6 +261,11 @@ html{
   display: inline-block;
 }
 
+#canvas{
+  border:45px solid grey;
+ 
+}
+
 
 
 

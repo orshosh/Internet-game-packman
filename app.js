@@ -18,30 +18,48 @@ var mainp= "#7FFFD4";
 var middlep="#FF6347";
 var lowp="#C0C0C0";
 var gameTime=60;
-var numManster=1;
+var numMonster=1;
+var virusPic=new Image();
+var life=5;
+var pills=new Image();
+var clock=new Image();
 
-$(document).ready(function() {
 
-
-});
 
 function Start() {
+	console.log(numMonster);
 	board = new Array();
 	score = 0;
 	pac_color ="yellow";
 	var cnt = 100; // אחוזים
 	var pacman_remain = 1;// כמות הפעמים שמשנים את מקום הפקמן במשחק כמו בוליאני
 	start_time = new Date();
+	var monstersLeft=0;
 	for (var i = 0; i < 10; i++) {  //// השמת קירות
 		board[i] = new Array();
 		//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
 		for (var j = 0; j < 10; j++) {
-			if ( 
-				(i == 3 && j == 3) ||
-				(i == 3 && j == 4) ||
+			if(
+				(i == 0 && j == 0) ||
+				(i == 0 && j == 9) ||
+				(i == 9 && j == 0) ||
+				(i == 9 && j == 9) 
+				
+			){
+				if(monstersLeft<numMonster){
+					board[i][j]=3;
+					monstersLeft++;
+				}
+
+			}
+			else if ( 
+				(i == 8 && j == 0) ||
+				(i == 8 && j == 1) ||
 				(i == 3 && j == 5) ||
 				(i == 6 && j == 1) ||
-				(i == 6 && j == 2)
+				(i == 6 && j == 2) ||
+				(i==6 && j==8) ||
+				(i==5&&j==8)
 			) {
 				board[i][j] = 4; ///  קירות=4
 			} else {
@@ -75,6 +93,16 @@ function Start() {
 		board[emptyCell[0]][emptyCell[1]] = 1;
 		food_remain--;
 	}
+	for(var i=0; i<2;i++){
+		var emptyCell = findRandomEmptyCell(board);
+		board[emptyCell[0]][emptyCell[1]]=7; //// 7=pills
+	}
+	for(var i=0; i<2;i++){
+		var emptyCell = findRandomEmptyCell(board);
+		board[emptyCell[0]][emptyCell[1]]=8; //// 8=clock
+	}
+
+
 	keysDown = {}; // מילון שמחזיק listener
 	addEventListener(
 		"keydown",
@@ -203,16 +231,25 @@ function Draw(y) {
 				context.rect(center.x - 30, center.y - 30, 60, 60);
 				context.fillStyle = "grey"; //color
 				context.fill();
-			}else if(board[i][j] == 5){
+			}else if(board[i][j] == 5){ /// lowP
 				context.beginPath();
 				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
 				context.fillStyle = lowp; //color
 				context.fill();
-			} else if(board[i][j] == 6){
+			} else if(board[i][j] == 6){// middle point
 				context.beginPath();
 				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
 				context.fillStyle = middlep; //color
 				context.fill();
+			}
+			else if(board[i][j]==3){
+				context.drawImage(virusPic,center.x-25,center.y-25,60,60);
+			} /// virus
+			else if(board[i][j]==7){
+				context.drawImage(pills,center.x-25,center.y-25,50,50);
+			}
+			else if(board[i][j]==8){
+				context.drawImage(clock,center.x-25,center.y-25,50,50);
 			}
 		}
 	}
@@ -249,18 +286,43 @@ function UpdatePosition() {
 		score=score+25;
 	}else if (board[shape.i][shape.j] == 6) {  // אם זה אוכל נעדכן את הניקוד של המשתמש
 		score=score+15;
+	}else if(board[shape.i][shape.j]==3){
+		score=score-10;
+		life--;
+	} else if(board[shape.i][shape.j]==7){
+		life++;
+		score=score+5;
+	}
+	else if(board[shape.i][shape.j]==8){
+			gameTime=gameTime+30;
 	}
 	
 	board[shape.i][shape.j] = 2; // משנים את מיקום הפקמן במערך
 	var currentTime = new Date(); 
 	time_elapsed = (currentTime - start_time) / 1000; // כמות הזמן שנשארת
-	if (score >= 20 && time_elapsed <= 10) { // הפקמן יהפוך לירוק אם התנאי מתקיים
-		pac_color = "green";
-	}
-	if (score == 50) { ///// סוף המשחק ומאפס את  האינטרוול
+	if(life==0){
 		window.clearInterval(interval);
-		window.alert("Game completed");
-	} else {
+			window.alert("Loser!");
+	}
+	if(time_elapsed>gameTime){
+		if(score<=100){
+			window.clearInterval(interval);
+			window.alert("Yoa are better than " + score + " points!");
+		}
+		else{
+			window.clearInterval(interval);
+			window.alert("Winner!");
+		}
+		 /// בגלל הזמן
+	}
+	// if (score >= 20 && time_elapsed <= 10) { // הפקמן יהפוך לירוק אם התנאי מתקיים
+	// 	pac_color = "green";
+	// }
+	// if (score == 50) { ///// סוף המשחק ומאפס את  האינטרוול
+	// 	window.clearInterval(interval);
+	// 	window.alert("Game completed");
+	// }
+	 else {
 		if(x!=undefined){
 			before=x;
 			Draw(x);
@@ -294,28 +356,27 @@ function setVariables(){
 	middlep=$("#middleC").val();
 	lowp=$("#lowC").val();
 	gameTime=$("#gameTime").val();
-	numManster=$("#monsterNum").val();
-	var inputup = $("#up").val();
-	window.up = inputup.charCodeAt()-32;
-	var inputdown = $("#down").val();
-	window.down = inputdown.charCodeAt()-32;
-	var inputleft = $("#left").val();
-	window.left = inputleft.charCodeAt()-32;
-	var inputright = $("#right").val();
-	window.right = inputright.charCodeAt()-32;
+	numMonster=$("#monsterNum").val();
+	virusPic.src="images/virus1.png";
+	pills.src="images/pill.png"
+	clock.src="images/clock.png"
+
 	Start();
+}
+
+function randomSettings(){
+	document.getElementById("food").value=50;
+	document.getElementById("mainC").value="#6495ED";
+	document.getElementById("middleC").value="#FF69B4";
+	document.getElementById("lowC").value="#D3D3D3";
+	document.getElementById("monsterNum").value=1;
+	document.getElementById("gameTime").value=60;
+	game();
 }
 
 
 function checkSetting(){
-	if(document.getElementById("randomly").checked){
-		document.getElementById("food").value=50;
-		document.getElementById("mainC").value="#7FFFD4";
-		document.getElementById("middleC").value="#FF6347";
-		document.getElementById("lowC").value="#C0C0C0";
-		game();
-	}
-	else{
+
     $("#settingForm").validate({
 
         rules: {
@@ -340,6 +401,14 @@ function checkSetting(){
 
           },
           submitHandler: function(){
+			var inputup = $("#up").val();
+			window.up = inputup.charCodeAt()-32;
+			var inputdown = $("#down").val();
+			window.down = inputdown.charCodeAt()-32;
+			var inputleft = $("#left").val();
+			window.left = inputleft.charCodeAt()-32;
+			var inputright = $("#right").val();
+			window.right = inputright.charCodeAt()-32;
 			game();
           },
           messages: {
@@ -356,5 +425,5 @@ function checkSetting(){
 
 }
     
-}
+
 
