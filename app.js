@@ -8,13 +8,17 @@ var time_elapsed; // הזמן שנשאר למשחק
 var interval; // הרצת פונקציה של עדכון המשחק בצורה מחזורית בהתאם לזמן והפעולות
 var before;
 
-
+var userName;
 var left=37;
 var right=39;
 var up=38;
 var down=40;
 var food_remain=50;
 var mainp= "#7FFFD4";
+var middlep="#FF6347";
+var lowp="#C0C0C0";
+var gameTime=60;
+var numManster=1;
 
 $(document).ready(function() {
 
@@ -22,12 +26,10 @@ $(document).ready(function() {
 });
 
 function Start() {
-	mainp=$("#mainC").val();
 	board = new Array();
 	score = 0;
-	pac_color = mainp;
+	pac_color ="yellow";
 	var cnt = 100; // אחוזים
-	var food_remain= $("#food").val();
 	var pacman_remain = 1;// כמות הפעמים שמשנים את מקום הפקמן במשחק כמו בוליאני
 	start_time = new Date();
 	for (var i = 0; i < 10; i++) {  //// השמת קירות
@@ -186,7 +188,7 @@ function Draw(y) {
 			} else if (board[i][j] == 1) { // ציור האוכל
 				context.beginPath();
 				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
-				context.fillStyle = "black"; //color
+				context.fillStyle = mainp; //color
 				context.fill();
 			} else if (board[i][j] == 4) { // קירות
 				context.beginPath();
@@ -256,15 +258,32 @@ function game()
  $("#gameC").css("display","block");
  context = canvas.getContext("2d");
  before=4;
- Start();
+ setVariables();
  
 //  up=document.getElementById("up").keyCode();
 //  alert(up);
  
 } 
 
+
+function setVariables(){
+	mainp=$("#mainC").val();
+	food_remain= $("#food").val();
+	userName=$("#userName2").val();
+	middlep=$("#middleC").val();
+	lowp=$("#lowC").val();
+	gameTime=$("#gameTime").val();
+	numManster=$("#monsterNum").val();
+	Start();
+}
+
+
 function checkSetting(){
 	if(document.getElementById("randomly").checked){
+		document.getElementById("food").value=50;
+		document.getElementById("mainC").value="#7FFFD4";
+		document.getElementById("middleC").value="#FF6347";
+		document.getElementById("lowC").value="#C0C0C0";
 		document.getElementById("food").value=50;
 		game();
 	}
