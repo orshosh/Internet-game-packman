@@ -23,11 +23,11 @@ var virusPic=new Image();
 var life=5;
 var pills=new Image();
 var clock=new Image();
+var randomSet = false;
 
 
 
 function Start() {
-	console.log(numMonster);
 	board = new Array();
 	score = 0;
 	pac_color ="yellow";
@@ -245,8 +245,7 @@ function Draw(y) {
 }
 
 function UpdatePosition() {
-	foodCount=$("#food").val();
-	console.log(foodCount);
+	//foodCount=$("#food").val();//???????????
 	board[shape.i][shape.j] = 0; // מוחקים את פקמן מהמערך
 	var x = GetKeyPressed(); //  מושכים את המיקום האחרון של הפקמן ומשנים את המיקום בהתאם
 	if (x == 1) {
@@ -324,7 +323,6 @@ function UpdatePosition() {
 }
 function game() 
 {
-
  $("#open").css("display", "none");
  $("#registerPage").css("display","none");
  $("#loginPage").css("display","none");
@@ -332,8 +330,7 @@ function game()
  $("#gameC").css("display","block");
  context = canvas.getContext("2d");
  before=4;
- setVariables();
- 
+setVariables();
  
 } 
 
@@ -347,9 +344,9 @@ function setVariables(){
 	gameTime=$("#gameTime").val();
 	numMonster=$("#monsterNum").val();
 	virusPic.src="images/virus1.png";
-	pills.src="images/pill.png"
-	clock.src="images/clock.png"
-
+	pills.src="images/pill.png";
+	clock.src="images/clock.png";
+	
 	Start();
 }
 
@@ -363,14 +360,74 @@ function randomSettings(){
 	game();
 }
 
+function getKeyboard(){
+
+		$("#up").click(function(){
+			$("#keyMassege").fadeIn();
+		})
+		$("#up").keyup(function(event){
+			if(event.keyCode == 32){
+				$("#up").attr('value','spce');
+			}else{
+				$("#up").attr('value',event.key);
+			}
+			window.up = event.keyCode;
+			$("#keyMassege").fadeOut();
+
+		});
+
+		$("#left").click(function(){
+			$("#keyMassege").fadeIn();
+		})
+		$("#left").keyup(function(event){
+			if(event.keyCode == 32){
+				$("#left").attr('value','spce');
+			}else{
+				$("#left").attr('value',event.key);
+			}
+			window.left = event.keyCode;
+			$("#keyMassege").fadeOut();
+
+		});
+
+		$("#right").click(function(){
+			$("#keyMassege").fadeIn();
+		})
+		$("#right").keyup(function(event){
+			if(event.keyCode == 32){
+				$("#right").attr('value','spce');
+			}else{
+				$("#right").attr('value',event.key);
+			}
+			window.right = event.keyCode;
+			$("#keyMassege").fadeOut();
+
+		});
+
+		$("#down").click(function(){
+			$("#keyMassege").fadeIn();
+		})
+		$("#down").keyup(function(event){
+			if(event.keyCode == 32){
+				$("#down").attr('value','spce');
+			}else{
+				$("#down").attr('value',event.key);
+			}
+			window.down = event.keyCode;
+			$("#keyMassege").fadeOut();
+		});
+
+}
+
 
 function checkSetting(){
-
+	
     $("#settingForm").validate({
 
         rules: {
             up:{
-              required:true,
+			  required:true,
+			  
             } ,
             down: {
               required: true,
@@ -390,14 +447,6 @@ function checkSetting(){
 
           },
           submitHandler: function(){
-			var inputup = $("#up").val();
-			window.up = inputup.charCodeAt()-32;
-			var inputdown = $("#down").val();
-			window.down = inputdown.charCodeAt()-32;
-			var inputleft = $("#left").val();
-			window.left = inputleft.charCodeAt()-32;
-			var inputright = $("#right").val();
-			window.right = inputright.charCodeAt()-32;
 			game();
           },
           messages: {
@@ -405,13 +454,11 @@ function checkSetting(){
           
           },
           errorPlacement: function (error, element) {
-              error.insertBefore(element);
+              error.insertAfter(element);
             }
 
    
     });
- 
-
 }
     
 

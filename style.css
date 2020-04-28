@@ -2,11 +2,18 @@
   font-family: packman;
   src: url(fonts/PAC-FONT.TTF);
 }
+@font-face {
+  font-family: toolBar;
+  src: url(fonts/3Dumb.ttf);
+}
 
   /*///////////////open window//////////////*/
 
 #gameC{
     display:none;
+    width: 100%;
+    margin: 0;
+    top: 0;
 }
 body{
   width: 100%;
@@ -62,7 +69,7 @@ html{
   }
 
 /* register window disign*/
-.regWindow , .logWindow{
+.regWindow , .logWindow,.settings{
   background-image: url('images/corona2.jpg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -78,10 +85,14 @@ html{
   padding-top: 50px;
   padding-bottom: 0.7%;
 } 
+.settings{
+  padding-top: 50px;
+  padding-bottom: 2%;
+} 
 
   
   /* Full-width input fields */
-  input[type=text], input[type=password], input[type=date] {
+  input[type=text], input[type=password], input[type=date]{
     width: 98%;
     padding: 5px;
     margin: 0px 0 5px 0;
@@ -105,7 +116,7 @@ html{
   }
   
   /* Set a style for the submit/register button */
-  .registerbtn ,.loginbtn{
+  .registerbtn ,.loginbtn ,.play, .randomSet{
     font-family: Comic sans MS;
     font-size: 20px;
     font-weight: bold;
@@ -120,6 +131,10 @@ html{
     margin-top: -1.5%;
     border-radius: 12px;
 
+  }
+
+  .randomSet{
+    margin-left: 60%;
   }
 
   .registerbtn:hover {
@@ -161,6 +176,7 @@ html{
   }
   form .error {
     color: #ff0000;
+    font-family: Comic sans MS;
 
   }
 
@@ -177,7 +193,7 @@ html{
     position: fixed;
     width: 93%;
     left: 7%;
-    background-color: #333;
+    background-color: #f4f1e5;
     z-index: 99;
 
   }
@@ -189,16 +205,21 @@ html{
     padding: 14px 16px;
     font-size: 17px;
     flex: 1;
+    font-family: toolBar;
+    font-weight: bold;
+    
   }
   
   /* Change the color of links on hover */
   .toolBar li:hover {
     background-color: #ddd;
-    color: black;
+    color: #7eb9be;
+    
   }
   li a{
-    color: lawngreen;
+    color: #544738;
     text-decoration: none;
+  
   }
   
   /* Add a color to the active/current link */
@@ -253,18 +274,92 @@ html{
 }
 
 #settings{
+  padding-top: 50px;
   display: none;
 }
 
-#time label{
-  padding-left: 200px;
-  display: inline-block;
-}
 
 #canvas{
   border:45px solid grey;
- 
+  width: 70%;
+  margin-top: 10%;
+
 }
+#keyMassege{
+  display: none;
+
+}
+.keyBtn{
+  font-family: Comic sans MS;
+    font-size: 10px;
+    font-weight: bold;
+    background-color: #d2b1f3;
+    color: black;
+    padding: 15px 15px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+    
+   
+    /* border-radius: 12px; */
+}
+.box_keybtn img{
+  margin-top: 10px;
+  height: 55px;
+  width: 55px;
+  
+  
+}
+
+input[type=number], select{
+  width: 20%;
+  padding: 5px;
+  margin: 0px 0 5px 0;
+  display: inline-block;
+  font-family: Comic sans MS;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: white;
+  margin-top: 10px;
+}
+
+input[type=number]:focus, select{
+  background-color: #ddd;
+  outline: none;
+
+}
+#setBox{
+  font-family: Comic sans MS;
+  font-size: 14px;
+  box-sizing:border-box;
+  padding:0px 16px 5px 16px;
+  width: 40%;
+  margin-left: 30%;
+  background-color: white;
+  box-shadow: 5px 5px 5px #ccc;
+  border-radius:12px ;
+}
+#keyMassege{
+  color: #ff0000;
+  font-family: Comic sans MS;
+
+}
+.balls{
+  font-family: Comic sans MS;
+  font-weight: bold;
+}
+/* #details{
+  margin-top: 0;
+  margin-left: 70%;
+}
+#game{
+  margin-top: 0;
+} */
+.gameWindow{
+  top: 0;
+  margin: 0;
+}
+
 
 
 

@@ -150,6 +150,7 @@ function set()
  $("#loginPage").css("display","none");
  $("#gameC").css("display","none");
  $("#settings").css("display","block");
+ getKeyboard();
 
 } 
 
