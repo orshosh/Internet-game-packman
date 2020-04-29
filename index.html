@@ -97,9 +97,20 @@
 			<canvas id="canvas" height="600" width="850"></canvas>
 		</div>
 		<div id=dialogGame>
-			<dialog id="timeout" aria-placeholder="jhbkjhbkjhnkhnk">
-				<button id="playAgain" onclick="game()">Play Again</button>
-				<button id="home" onclick="welcome()">Home Page</button>
+			<dialog id="timeout" >
+				<p id="timeDialod"></p>
+				<button id="playAgain1" onclick="game()">Play Again</button>
+				<button id="home1" onclick="welcome()">Home Page</button>
+			</dialog>
+			<dialog id="win" >
+				<p>winner!!</p>
+				<button id="playAgain2" onclick="game()">Play Again</button>
+				<button id="home2" onclick="welcome()">Home Page</button>
+			</dialog>
+			<dialog id="loser" >
+				<p>loser!!</p>
+				<button id="playAgain3" onclick="game()">Play Again</button>
+				<button id="home3" onclick="welcome()">Home Page</button>
 			</dialog>
 		</div>
 	</div>

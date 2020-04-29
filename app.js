@@ -43,7 +43,7 @@ function Start() {
 
 	score = 0;
 	pac_color ="yellow";
-	var cnt = 100; // אחוזים
+	var cnt = 140; // אחוזים
 	var pacman_remain = 1;// כמות הפעמים שמשנים את מקום הפקמן במשחק כמו בוליאני
 	start_time = new Date();
 	var monstersLeft=0;
@@ -100,7 +100,7 @@ function Start() {
 				} else {
 					board[i][j] = 0; // חלק ריק
 				}
-				//cnt--;
+				cnt--;
 			}
 		}
 	}
@@ -134,6 +134,10 @@ function Start() {
 		},
 		false
 	);
+	if(shape.i == undefined || shape.j == undefined){
+		shape.i =7;
+		shape.j = 7;
+	}
 	interval=setInterval(UpdatePosition,250);
 	// interval2 = setInterval(updateMonsters, 250); // כל 250 מיל שניות ישנה את מיקום הפקמן
 	
@@ -272,7 +276,7 @@ function updateMonsters(){
 	var move=randomMonsterMove();
 	board[monsterArray[i].x][monsterArray[i].y] = 0;
 	if (move == 1) {
-		if (monsterArray[i].x > 0 && board[monsterArray[i].x][monsterArray[i].y-1] != 4
+		if (monsterArray[i].y > 0 && board[monsterArray[i].x][monsterArray[i].y-1] != 4
 			&& board[monsterArray[i].x][monsterArray[i].y-1] != 3) {
 			monsterArray[i].y--;
 		}
@@ -360,20 +364,19 @@ function UpdatePosition() {
 	if(life==0){
 		window.clearInterval(interval);
 		window.clearInterval(interval2);
-		window.alert("Loser!");
+		$("#loser").css("display","block");
+		
 	}
 	if(time_elapsed>gameTime){
 		if(score<=100){
 			window.clearInterval(interval);
-			window.clearInterval(interval2);
-			// window.alert("Yoa are better than " + score + " points!");
-			$("#timeout").css("display","block");
-
+			window.clearInterval(interval2);	
+			timeEnd();
 		}
 		else{
 			window.clearInterval(interval);
 			window.clearInterval(interval2);
-			window.po("Winner!");
+			$("#win").css("display","block");
 		}
 		 /// בגלל הזמן
 	}
@@ -394,6 +397,10 @@ function UpdatePosition() {
 		}
 		 /// אם המשחק לא הסתיים נצייר את המשחק על הקנבס
 	}
+}
+function timeEnd(){
+	timeDialod.innerText="Yoa are better than " + score + " points!";
+	$("#timeout").css("display","block");
 }
 function game() 
 {
