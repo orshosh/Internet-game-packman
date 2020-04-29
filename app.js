@@ -26,6 +26,11 @@ var pills=new Image();
 var clock=new Image();
 var randomSet = false;
 
+var upName="ArrowUp";
+var downName="ArrowDown";
+var rightName="ArrowRight";
+var leftName="ArrowLeft";
+
 var monsterArray= new Array();
 monsterArray[0] = new Object();
 monsterArray[1] = new Object();
@@ -38,10 +43,24 @@ wasFood[1]=0;
 wasFood[2]=0;
 wasFood[3]=0;
 
+var monsterStart= new Array();
+monsterStart[0] = new Object();
+monsterStart[1] = new Object();
+monsterStart[2] = new Object();
+monsterStart[3] = new Object();
+
+var alcogel=new Object();
+var alco=new Image();
+var alcoFood=0;
+var wasEaten=false;
+
+var music=new Audio("images/music.mp3");
+
 function Start() {
 	board = new Array();
-
+	wasEaten=false;
 	score = 0;
+	setMovingMonsterArray();
 	pac_color ="yellow";
 	var cnt = 140; // אחוזים
 	var pacman_remain = 1;// כמות הפעמים שמשנים את מקום הפקמן במשחק כמו בוליאני
@@ -50,9 +69,14 @@ function Start() {
 	var foodCount=food_remain;
 	for (var i = 0; i < 14; i++) {  //// השמת קירות
 		board[i] = new Array();
-		//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
+	
 		for (var j = 0; j < 10; j++) {
-			if(
+			if((i == 13 && j == 9 && numMonster<4) ){
+				board[i][j]=9; //// alcogel
+				alcogel.x=i;
+				alcogel.y=j;
+			}
+			else if(
 				(i == 0 && j == 0) ||
 				(i == 0 && j == 9) ||
 				(i == 13 && j == 0) ||
@@ -68,6 +92,12 @@ function Start() {
 				}
 
 			}
+			else if((i == 13 && j == 8&& numMonster==4) ){
+				board[i][j]=9; //// alcogel
+				alcogel.x=i;
+				alcogel.y=j;
+			}
+		
 			else if ( 
 				(i == 8 && j == 0) ||
 				(i == 8 && j == 1) ||
@@ -75,7 +105,14 @@ function Start() {
 				(i == 6 && j == 1) ||
 				(i == 6 && j == 2) ||
 				(i==6 && j==8) ||
-				(i==5 && j==8)
+				(i==5 && j==8) ||
+				(i==12 && j==7)||
+				(i==12 && j==8)||
+				(i==13 && j==3)||
+				(i==12 && j==3)||
+				(i==11 && j==3)||
+				(i==11 && j==4)
+		
 			) {
 				board[i][j] = 4; ///  קירות=4
 			} else {
@@ -143,7 +180,16 @@ function Start() {
 	
 }
 
-
+function setMovingMonsterArray(){
+	monsterStart[0].x=0;
+	monsterStart[0].y=0;
+	monsterStart[1].x=0;
+	monsterStart[1].y=9;
+	monsterStart[2].x=13;
+	monsterStart[2].y=0;
+	monsterStart[3].x=13;
+	monsterStart[3].y=9;
+}
 
 
 function findRandomEmptyCell(board) { // מוצאת תאים רנדומלים ריקים
@@ -176,7 +222,16 @@ function GetKeyPressed() {
 function Draw(y) {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score; // עדכון התוצאה
-	lblTime.value = time_elapsed; // עדכון הזמן
+	lblTime.value =gameTime-time_elapsed; // עדכון הזמן
+	playerName.value=userName;
+	lives.value=life;
+	// totalTime.value=gameTime;
+	monster.value=numMonster;
+	numFood.value=food_remain;
+	highP.value=lowp;
+	mediumP.value=middlep;
+	lowP.value=mainp;
+	upButton.value=upName;
 	for (var i = 0; i < 14; i++) {
 		for (var j = 0; j < 10; j++) {
 			var center = new Object(); // איפה מציירים
@@ -254,17 +309,20 @@ function Draw(y) {
 			else if(board[i][j]==3){
 				context.drawImage(virusPic,center.x-25,center.y-25,60,60);
 			} /// virus
-			else if(board[i][j]==7){
+			else if(board[i][j]==7){/// pills
 				context.drawImage(pills,center.x-25,center.y-25,50,50);
 			}
-			else if(board[i][j]==8){
+			else if(board[i][j]==8){ /// timr
 				context.drawImage(clock,center.x-25,center.y-25,50,50);
+			}
+			else if(board[i][j]==9){
+				context.drawImage(alco,center.x-25,center.y-25,50,50);
 			}
 		}
 	}
 }
 
-function randomMonsterMove(){
+function randomMove(){
 	var rand=Math.floor(Math.random() * 4 + 1);
 	return rand;
 }
@@ -273,29 +331,29 @@ function updateMonsters(){
 	for( var i=0; i<numMonster; i++){
 	var tempx=monsterArray[i].x;
 	var tempy= monsterArray[i].y;
-	var move=randomMonsterMove();
+	var move=randomMove();
 	board[monsterArray[i].x][monsterArray[i].y] = 0;
 	if (move == 1) {
 		if (monsterArray[i].y > 0 && board[monsterArray[i].x][monsterArray[i].y-1] != 4
-			&& board[monsterArray[i].x][monsterArray[i].y-1] != 3) {
+			&& board[monsterArray[i].x][monsterArray[i].y-1] != 3 &&board[monsterArray[i].x][monsterArray[i].y-1] != 9) {
 			monsterArray[i].y--;
 		}
 	}
 	if (move == 2) {
 		if (monsterArray[i].y < 9 && board[monsterArray[i].x][monsterArray[i].y + 1] != 4 &&
-			board[monsterArray[i].x][monsterArray[i].y + 1] != 3) {
+			board[monsterArray[i].x][monsterArray[i].y + 1] != 3 && board[monsterArray[i].x][monsterArray[i].y + 1] != 9) {
 			monsterArray[i].y++;
 		}
 	}
 	if (move == 3) {
 		if (monsterArray[i].x > 0 && board[monsterArray[i].x - 1][monsterArray[i].y] != 4
-			&& board[monsterArray[i].x - 1][monsterArray[i].y] != 3) {
+			&& board[monsterArray[i].x - 1][monsterArray[i].y] != 3 && board[monsterArray[i].x - 1][monsterArray[i].y] != 9) {
 			monsterArray[i].x--;
 		}
 	}
 	if (move == 4) {
 		if (monsterArray[i].x < 13 && board[monsterArray[i].x + 1][monsterArray[i].y] != 4
-			&&board[monsterArray[i].x + 1][monsterArray[i].y] != 3) {
+			&&board[monsterArray[i].x + 1][monsterArray[i].y] != 3 &&board[monsterArray[i].x + 1][monsterArray[i].y] != 9) {
 			monsterArray[i].x++;
 		}
 	}
@@ -309,6 +367,47 @@ function updateMonsters(){
 	board[monsterArray[i].x][monsterArray[i].y] = 3;
 	
 }
+}
+
+function moveAlco(){
+		var tempx=alcogel.x;
+		var tempy= alcogel.y;
+		var move=randomMove();
+		board[alcogel.x][alcogel.y] = 0;
+		if (move == 1) {
+			if (alcogel.y > 0 && board[alcogel.x][alcogel.y-1] != 4
+				&& board[alcogel.x][alcogel.y-1] != 3) {
+					alcogel.y--;
+			}
+		}
+		if (move == 2) {
+			if (alcogel.y < 9 && board[alcogel.x][alcogel.y + 1] != 4 &&
+				board[alcogel.x][alcogel.y + 1] != 3) {
+					alcogel.y++;
+			}
+		}
+		if (move == 3) {
+			if (alcogel.x > 0 && board[alcogel.x - 1][alcogel.y] != 4
+				&& board[alcogel.x - 1][alcogel.y] != 3) {
+					alcogel.x--;
+			}
+		}
+		if (move == 4) {
+			if (alcogel.x < 13 && board[alcogel.x + 1][alcogel.y] != 4
+				&&board[alcogel.x + 1][alcogel.y] != 3) {
+					alcogel.x++;
+			}
+		}
+		
+		board[tempx][tempy]=alcoFood;
+		
+	
+		alcoFood=board[alcogel.x][alcogel.y];
+	
+	
+		board[alcogel.x][alcogel.y] = 9;
+		
+	
 }
 
 
@@ -336,6 +435,10 @@ function UpdatePosition() {
 			shape.i++;
 		}
 	}
+	if(wasEaten==false){
+		moveAlco();
+	}
+
 	updateMonsters();
 	if (board[shape.i][shape.j] == 1) {  // אם זה אוכל נעדכן את הניקוד של המשתמש
 		score=score+5;
@@ -348,14 +451,25 @@ function UpdatePosition() {
 		life--;
 		shape.i=7;
 		shape.j=7;
+		for( var n=0; n<numMonster;n++){
+			board[monsterArray[n].x][monsterArray[n].y]=0;
+			monsterArray[n].x=monsterStart[n].x;
+			monsterArray[n].y=monsterStart[n].y;
+			board[monsterStart[n].x][monsterStart[n].y]=3;
+		}
+		
 
 	} else if(board[shape.i][shape.j]==7){
 		life++;
 		score=score+5;
 	}
 	else if(board[shape.i][shape.j]==8){
-			gameTime=gameTime+30;
-	}
+			gameTime=Number(gameTime)+30;
+	}else if(board[shape.i][shape.j]==9){
+		score=score+50;
+		wasEaten=true;
+}
+
 
 	
 	board[shape.i][shape.j] = 2; // משנים את מיקום הפקמן במערך
@@ -363,19 +477,21 @@ function UpdatePosition() {
 	time_elapsed = (currentTime - start_time) / 1000; // כמות הזמן שנשארת
 	if(life==0){
 		window.clearInterval(interval);
-		window.clearInterval(interval2);
+		// window.clearInterval(interval2);
+		music.pause();
 		$("#loser").css("display","block");
 		
 	}
 	if(time_elapsed>gameTime){
 		if(score<=100){
 			window.clearInterval(interval);
-			window.clearInterval(interval2);	
+			// window.clearInterval(interval2);	
 			timeEnd();
 		}
 		else{
 			window.clearInterval(interval);
-			window.clearInterval(interval2);
+			// window.clearInterval(interval2);
+			music.pause();
 			$("#win").css("display","block");
 		}
 		 /// בגלל הזמן
@@ -399,12 +515,15 @@ function UpdatePosition() {
 	}
 }
 function timeEnd(){
-	timeDialod.innerText="Yoa are better than " + score + " points!";
+	timeDialog.innerText="Yoa are better than " + score + " points!";
+	music.pause();
 	$("#timeout").css("display","block");
 }
 function game() 
 {
 $("#timeout").css("display","none");
+$("#win").css("display","none");
+$("#loser").css("display","none");
  $("#open").css("display", "none");
  $("#registerPage").css("display","none");
  $("#loginPage").css("display","none");
@@ -418,27 +537,32 @@ setVariables();
 
 
 function setVariables(){
+	window.clearInterval(interval);
 	mainp=$("#mainC").val();
 	food_remain= $("#food").val();
 	userName=$("#userName2").val();
 	middlep=$("#middleC").val();
 	lowp=$("#lowC").val();
-	gameTime=$("#gameTime").val();
+	gameTime=$("#gameT").val();
 	numMonster=$("#monsterNum").val();
 	virusPic.src="images/virus1.png";
 	pills.src="images/pill.png";
 	clock.src="images/clock.png";
+	alco.src="images/alco.png";
+	music.currentTime=0;
+	music.play();
+	// music.setAttribute("src","images/music.mp3");
 	
 	Start();
 }
 
 function randomSettings(){
 	document.getElementById("food").value=50;
-	document.getElementById("mainC").value="#6495ED";
-	document.getElementById("middleC").value="#FF69B4";
-	document.getElementById("lowC").value="#D3D3D3";
+	document.getElementById("mainC").value="CornflowerBlue";
+	document.getElementById("middleC").value="HotPink";
+	document.getElementById("lowC").value="LightGray";
 	document.getElementById("monsterNum").value=1;
-	document.getElementById("gameTime").value=60;
+	document.getElementById("gameT").value=60;
 	game();
 }
 
@@ -449,10 +573,13 @@ function getKeyboard(){
 		})
 		$("#up").keyup(function(event){
 			if(event.keyCode == 32){
-				$("#up").attr('value','spce');
+				$("#up").attr('value','space');
+				upName="space";
 			}else{
 				$("#up").attr('value',event.key);
+				upName=event.key;
 			}
+		
 			window.up = event.keyCode;
 			$("#keyMassege").fadeOut();
 
@@ -463,10 +590,13 @@ function getKeyboard(){
 		})
 		$("#left").keyup(function(event){
 			if(event.keyCode == 32){
-				$("#left").attr('value','spce');
+				$("#left").attr('value','space');
+				leftName="space";
 			}else{
 				$("#left").attr('value',event.key);
+				leftName=event.key;
 			}
+			
 			window.left = event.keyCode;
 			$("#keyMassege").fadeOut();
 
@@ -477,10 +607,13 @@ function getKeyboard(){
 		})
 		$("#right").keyup(function(event){
 			if(event.keyCode == 32){
-				$("#right").attr('value','spce');
+				$("#right").attr('value','space');
+				rightName="space";
 			}else{
 				$("#right").attr('value',event.key);
+				rightName=event.key;
 			}
+		
 			window.right = event.keyCode;
 			$("#keyMassege").fadeOut();
 
@@ -491,10 +624,13 @@ function getKeyboard(){
 		})
 		$("#down").keyup(function(event){
 			if(event.keyCode == 32){
-				$("#down").attr('value','spce');
+				$("#down").attr('value','space');
+				downName="space";
 			}else{
 				$("#down").attr('value',event.key);
+				downName=event.key;
 			}
+		
 			window.down = event.keyCode;
 			$("#keyMassege").fadeOut();
 		});
@@ -507,24 +643,14 @@ function checkSetting(){
     $("#settingForm").validate({
 
         rules: {
-            up:{
-			  required:true,
-			  
-            } ,
-            down: {
-              required: true,
-			},
-			right:{
-				required: true,
-			},
-			left:{
-				required: true,
-			},
 			food:{
 				required: true,
 			},
-			gameTime:{
+			gameT:{
 				required: true,
+			},
+			monsterNum:{
+				required:true,
 			}
 
           },

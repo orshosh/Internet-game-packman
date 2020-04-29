@@ -30,15 +30,17 @@ html{
   background: #222;
   background-size: 100% 100%;
   padding-top: 70px;
+  height: 100%;
 }
 
 
  #mainPage{
   font-family: packman;
  color: rgba(0,0,0,0.6);
-  text-shadow: 2px 2px 3px #ffcc00;
+  text-shadow: 2px 2px 3px #c6affd;
   text-align: center;
   font-size: 110px;
+  padding-top: 20%;
 } 
 .flex-container{
   display: flex;
@@ -59,7 +61,7 @@ html{
     
 }
 .openButton:hover {
-    background-color: rgb(175, 76, 134); 
+    background-color: #b366ff; 
     color: white;
   }
 
@@ -193,7 +195,9 @@ html{
     position: fixed;
     width: 93%;
     left: 7%;
-    background-color: #f4f1e5;
+    background-image: url('images/model2.jpeg');
+    background-size: 100%;
+    background-repeat: no-repeat;
     z-index: 99;
 
   }
@@ -212,7 +216,7 @@ html{
   
   /* Change the color of links on hover */
   .toolBar li:hover {
-    background-color: #ddd;
+    background-color: rgb(245, 229, 247);
     color: #7eb9be;
     
   }
@@ -234,7 +238,8 @@ html{
     text-align: left;
     position: fixed;
     width: 7%;
-    height: 48px;
+    height: 57px;
+ 
 
   }
 
@@ -250,21 +255,26 @@ html{
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4);
   
+  
   }
 
   .modal{
-    background-color: #fefefe;
+    background-image: url('images/model2.jpeg');
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    font-family: Comic sans MS;
+    background-repeat: no-repeat;
+    background-size: 100%;
   }
 
   .close {
-    color: #aaa;
+    color: rgb(56, 54, 54);
     float: right;
     font-size: 28px;
     font-weight: bold;
+    padding-top: 0%;
   }
   .close:hover,
 .close:focus {
@@ -333,8 +343,8 @@ input[type=number]:focus, select{
   font-size: 14px;
   box-sizing:border-box;
   padding:0px 16px 5px 16px;
-  width: 40%;
-  margin-left: 30%;
+  width: 49%;
+  margin-left: 27%;
   background-color: white;
   box-shadow: 5px 5px 5px #ccc;
   border-radius:12px ;
@@ -342,7 +352,7 @@ input[type=number]:focus, select{
 #keyMassege{
   color: #ff0000;
   font-family: Comic sans MS;
-
+  
 }
 .balls{
   font-family: Comic sans MS;
@@ -355,69 +365,69 @@ input[type=number]:focus, select{
 #game{
   margin-top: 0;
 } */
-.gameWindow{
+/* .gameWindow{
   top: 0;
   margin: 0;
+} */
+
+
+
+
+
+#details{
+  display: table-row;
+}
+
+#game{
+  display: -moz-grid-line;
+}
+
+footer{
+  padding-top: 0;
+  text-align: center;
+  font-family: Comic sans MS;
+  background-image: url('images/model2.jpeg');
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 
-#timeout{
-  background-color: #fefefe;
+#win,#loser, #timeout{
+  background-image: url('images/model2.jpeg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  display: none;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 30%;
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  width: 40%;
+  font-family: Comic sans MS;
+  height: 30%;
+  border-radius: 10%;
+  text-align: center;
+  position: fixed;
   left: 0;
   top: 0;
-  /* width: 100%; Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4);
+  overflow: auto;
 
 }
-#loser{
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 30%;
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  /* width: 100%; Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4);
+
+#playAgain1,#home1{
+  font-family: Comic sans MS;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: white;
+    color: #b366ff;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    opacity: 0.9;
+    margin-left: 9%;
+    margin-top: -1.5%;
+    border-radius: 12px;
+    
 }
-#win{
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 30%;
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  /* width: 100%; Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4);
-}
-
-
-
-
-
 
 
  

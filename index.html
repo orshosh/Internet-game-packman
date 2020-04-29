@@ -8,11 +8,12 @@
 		<script type="text/javascript" src="./signIn.js"></script>
 		<link rel="stylesheet" type="text/css" href="style.css"/>
 
+
 	</head>
 
 	<body>
 		<div class="toolBar" id="toolBar" >
-			<img id="logo" src="images/pacmanLogo.JPG"  width="60px" height="45px" />
+			<img id="logo" src="images/pacmanLogo.JPG"  width="60px" height="60px" />
 		<ul>	
 			<li><a href="#" onclick="welcome()">Welcome</a></li>
 			<li><a href="#" onclick="register()">Register</a></li>
@@ -87,18 +88,51 @@
 			  </form>
 		</div>
 		<div id="gameC">
-		<div class="gameWindow" id="details">
+		<!-- <div class="gameWindow" id="details">
+>
+		</div> -->
+		<div class="gameWindow" id="game">
+			<canvas id="canvas" height="600" width="840"></canvas>
+			<!-- <div id="playlist">
+				<audio  autoplay loop>
+					<source src="images/music.mp3" type="audio/mpeg">
+				</audio>
+			</div> -->
+
+			<!-- <iframe src="images/music.mp3" allow="autoplay" style="display:none" id="iframeAudio">
+			</iframe>  -->
+			<div id="details">
+			<label for="playerName">USER NAME:</label>
+			<input id="playerName" type="text" >
 			<label for="lblTime">TIME:</label>
 			<input id="lblTime" type="text" />
 			<label for="lblScore">SCORE:</label>
-			<input id="lblScore" type="text" />
+			<input id="lblScore" type="text" >
+			<!-- <label for="totalTime">TOTAL TIME:</label>
+			<input id="totalTime" type="text" > -->
+			<label for="lives">LIVES:</label>
+			<input id="lives" type="text" >
+			<label for="monster">NUMBER OF MONSTERS:</label>
+			<input id="monster" type="text" >
+			<label for="numFood">TOTAL FOOD:</label>
+			<input id="numFood" type="text" >
+			<label for="highP">25 POINTS:</label>
+			<input id="highP" type="text" >
+			<label for="mediumP">15 POINTS:</label>
+			<input id="mediumP" type="text" >
+			<label for="lowP">5 POINTS:</label>
+			<input id="lowP" type="text" >
+			<label for="upButton">UP:</label>
+			<input id="upButton" type="text" >
+			<button id="restart" onclick="setVariables()">RESTART</button>
+			<button id="backToSettings" onclick="set()">SETTINGS</button>
+
+			
 		</div>
-		<div class="gameWindow" id="game">
-			<canvas id="canvas" height="600" width="850"></canvas>
 		</div>
 		<div id=dialogGame>
 			<dialog id="timeout" >
-				<p id="timeDialod"></p>
+				<p id="timeDialog"></p>
 				<button id="playAgain1" onclick="game()">Play Again</button>
 				<button id="home1" onclick="welcome()">Home Page</button>
 			</dialog>
@@ -118,7 +152,20 @@
 		<dialog class="modelBox" id="modelBox">
 		<div class="modal" id="myModal">
 			<span class="close" onclick="closeDialog()">&times;</span>
-			<p>Some text in the Modal..</p>
+			This game was designed by: Chen Shoresh and Or Shoshani
+		</br>
+	</br>
+			We use a jQuery Plugin to validate the Register,Log-in and settings forms.
+		</br>
+	</br>
+			We had some troubles delivering arguments to the "addNewMethod" in the validate functions.
+		</br>
+	</br>
+			In addition, it took us some time to figure out how to change the game's keyboard.
+		</br>
+	</br>
+			At last, we succeeded and had fun while doing it.
+			
 		</div>
 		</dialog>
 
@@ -130,7 +177,7 @@
 		  <h1 id="setPage">Settings</h1>
 		  <p >Please enter your settings game</p>
 		  <hr>
-		  <p id="keyMassege">Press new key..</p>
+		  
 		  <div class="box_keybtn">
 		  <!-- <label for="up"><b>Up key:</b></label> -->
 		  <img src="images/up.png" sizes="10%">
@@ -148,43 +195,42 @@
 		  <img src="images/right.png">
 		  <input type="button" class="keyBtn" name="right" id="right" value="right" >
 		</div>
+		<p id="keyMassege">Press new key..</p>
 		  <label for="food"><b>Number of food:</b></label>
 		  <input type="number" min="50" max="90" name="food" id="food" >
 		</br>
-		  <label for="gameTime"><b>Game's length:</b></label>
-		  <input type="number" min="60"  name="gameTime" id="gameTime" >
+		  <label for="gameT"><b>Game's length:</b></label>
+		  <input type="number" min="60"  name="gameT" id="gameT" >
 		</br>
 		<label for="monsterNum"><b>Number of monsters:</b></label>
 		<input type="number" min="1"  max="4" name="monsterNum" id="monsterNum" >
 	  </br>
 
-		  <label class="balls" for="cars">Pick a color for the 25 p' food:</label>
+		  <label class="balls" for="cars">Pick a color for the 5 p' food:</label>
 			<select id="mainC">
-			<option value="#6495ED">blue</option>
-			<option value="#7FFFD4">green</option>
-			<option value="#A9A9A9">gray</option>
+			<option value="CornflowerBlue">blue</option>
+			<option value="Aquamarine">green</option>
+			<option value="DarkGray">gray</option>
 			</select>
 
 		</br>
 			<label class="balls" for="cars">Pick a color for the 15 p' food:</label>
 			<select id="middleC" >
-			<option value="#FF69B4">pink</option>
-			<option value="#FF6347">red</option>
-			<option value="#FF7F50">orange</option>
+			<option value="HotPink">pink</option>
+			<option value="Tomato">red</option>
+			<option value="Coral">orange</option>
 			
 			</select>
 
 		</br>
-			<label class="balls" for="cars">Pick a color for the 5 p' food:</label>
+			<label class="balls" for="cars">Pick a color for the 25 p' food:</label>
 			<select id="lowC" >
-			<option value="#D3D3D3">light gray</option>
-			<option value="#000000">black</option>
-			<option value="#C0C0C0">silver</option>
+			<option value="LightGray">light gray</option>
+			<option value="Black">black</option>
+			<option value="Silver">silver</option>
 			</select>
 		
 		</br>
-		  <!-- <input type="checkbox" id="randomly" name="randomly" >
-		  <label for="randomly"> Pick random settings</label><br><br> -->
 		  <br>
 		  <br>
 		  <button type="submit" class="play" onclick="checkSetting()" >Play</button>
@@ -194,8 +240,15 @@
 	
 		</div>
 
-	</div>
+		
 
+	</div>
+	<footer >
+		Created by: Or Shoshani and Chen Shoresh 
+		<br>
+		Contact information: <a href="mailto:chenshoresh95@post.bgu.ac.il">chenshoresh95@post.bgu.ac.il</a>
+	  </footer>
+	
 
 	<script type="text/javascript">
 		
@@ -212,5 +265,8 @@ $(window).keyup(function(event){
 });
 
 	</script>
+
+
+
 	</body>
 </html>

@@ -113,7 +113,7 @@ function checkUser(){
 }
 
 function welcome(){
-  
+  music.pause();
   $("#registerPage").css("display","none");
   $("#loginPage").css("display","none");
   $("#gameC").css("display","none");
@@ -124,7 +124,7 @@ function welcome(){
 
 function register() 
 {
-
+  music.pause();
  $("#open").css("display", "none");
  $("#loginPage").css("display","none");
  $("#gameC").css("display","none");
@@ -134,6 +134,7 @@ function register()
 
 function logIn() 
 {
+  music.pause();
  $("#open").css("display", "none");
  $("#registerPage").css("display","none");
  $("#gameC").css("display","none");
@@ -145,7 +146,7 @@ function logIn()
 
 function set() 
 {
-
+  music.pause();
  $("#open").css("display", "none");
  $("#registerPage").css("display","none");
  $("#loginPage").css("display","none");
