@@ -45,7 +45,7 @@ function checkInput(){
 
         },
         submitHandler: function(){
-          set();
+          logIn();
         },
         messages: {
           name: {
@@ -75,6 +75,7 @@ function checkInput(){
       uPass = $("#psw").val();
       localStorage.setItem("uPass",uPass);
       passwords.push(uPass);
+      
    
 }
 

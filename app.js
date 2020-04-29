@@ -7,13 +7,14 @@ var start_time; //הזמן שהתחלנו
 var time_elapsed; // הזמן שנשאר למשחק
 var interval; // הרצת פונקציה של עדכון המשחק בצורה מחזורית בהתאם לזמן והפעולות
 var before;
+var interval2;
 
 var userName;
 var left=37;
 var right=39;
 var up=38;
 var down=40;
-var food_remain=90;
+var food_remain=50;
 var mainp= "#7FFFD4";
 var middlep="#FF6347";
 var lowp="#C0C0C0";
@@ -25,16 +26,28 @@ var pills=new Image();
 var clock=new Image();
 var randomSet = false;
 
+var monsterArray= new Array();
+monsterArray[0] = new Object();
+monsterArray[1] = new Object();
+monsterArray[2] = new Object();
+monsterArray[3] = new Object();
 
+var wasFood=new Array();
+wasFood[0]=0;
+wasFood[1]=0;
+wasFood[2]=0;
+wasFood[3]=0;
 
 function Start() {
 	board = new Array();
+
 	score = 0;
 	pac_color ="yellow";
 	var cnt = 100; // אחוזים
 	var pacman_remain = 1;// כמות הפעמים שמשנים את מקום הפקמן במשחק כמו בוליאני
 	start_time = new Date();
 	var monstersLeft=0;
+	var foodCount=food_remain;
 	for (var i = 0; i < 14; i++) {  //// השמת קירות
 		board[i] = new Array();
 		//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
@@ -48,7 +61,10 @@ function Start() {
 			){
 				if(monstersLeft<numMonster){
 					board[i][j]=3;
+					monsterArray[monstersLeft].x=i;
+					monsterArray[monstersLeft].y=j;
 					monstersLeft++;
+
 				}
 
 			}
@@ -64,8 +80,8 @@ function Start() {
 				board[i][j] = 4; ///  קירות=4
 			} else {
 				var randomNum = Math.random();
-				if (randomNum <= (1.0 * food_remain) / cnt) { /// אם המספר הרנדומלי הוא מעל אחוז האוכל שנשאר
-					food_remain--;
+				if (randomNum <= (1.0 * foodCount) / cnt) { /// אם המספר הרנדומלי הוא מעל אחוז האוכל שנשאר
+					foodCount--;
 					var randomColor=Math.random();
 					if(randomColor>=0.9){
 						board[i][j] = 5; /// lowP
@@ -75,7 +91,7 @@ function Start() {
 					else{
 					board[i][j] = 1; // mainP
 					}
-				} else if (randomNum < (1.0 * (pacman_remain + food_remain)) / cnt) { 
+				} else if (randomNum < (1.0 * (pacman_remain + foodCount)) / cnt) { 
 					/// אם הפקמן עוד לא הוגדר
 					shape.i = i; // שמירת מיקום הפקמן
 					shape.j = j;
@@ -88,10 +104,10 @@ function Start() {
 			}
 		}
 	}
-	while (food_remain > 0) { // למקרה ונשאר עוד אוכל לחלק
+	while (foodCount > 0) { // למקרה ונשאר עוד אוכל לחלק
 		var emptyCell = findRandomEmptyCell(board);
 		board[emptyCell[0]][emptyCell[1]] = 1;
-		food_remain--;
+		foodCount--;
 	}
 	for(var i=0; i<2;i++){
 		var emptyCell = findRandomEmptyCell(board);
@@ -118,7 +134,9 @@ function Start() {
 		},
 		false
 	);
-	interval = setInterval(UpdatePosition, 250); // כל 250 מיל שניות ישנה את מיקום הפקמן
+	interval=setInterval(UpdatePosition,250);
+	// interval2 = setInterval(updateMonsters, 250); // כל 250 מיל שניות ישנה את מיקום הפקמן
+	
 }
 
 
@@ -207,8 +225,6 @@ function Draw(y) {
 					context.fill();
 				}
 
-			
-		
 
 			} else if (board[i][j] == 1) { // ציור האוכל
 				context.beginPath();
@@ -244,10 +260,58 @@ function Draw(y) {
 	}
 }
 
+function randomMonsterMove(){
+	var rand=Math.floor(Math.random() * 4 + 1);
+	return rand;
+}
+
+function updateMonsters(){
+	for( var i=0; i<numMonster; i++){
+	var tempx=monsterArray[i].x;
+	var tempy= monsterArray[i].y;
+	var move=randomMonsterMove();
+	board[monsterArray[i].x][monsterArray[i].y] = 0;
+	if (move == 1) {
+		if (monsterArray[i].x > 0 && board[monsterArray[i].x][monsterArray[i].y-1] != 4
+			&& board[monsterArray[i].x][monsterArray[i].y-1] != 3) {
+			monsterArray[i].y--;
+		}
+	}
+	if (move == 2) {
+		if (monsterArray[i].y < 9 && board[monsterArray[i].x][monsterArray[i].y + 1] != 4 &&
+			board[monsterArray[i].x][monsterArray[i].y + 1] != 3) {
+			monsterArray[i].y++;
+		}
+	}
+	if (move == 3) {
+		if (monsterArray[i].x > 0 && board[monsterArray[i].x - 1][monsterArray[i].y] != 4
+			&& board[monsterArray[i].x - 1][monsterArray[i].y] != 3) {
+			monsterArray[i].x--;
+		}
+	}
+	if (move == 4) {
+		if (monsterArray[i].x < 13 && board[monsterArray[i].x + 1][monsterArray[i].y] != 4
+			&&board[monsterArray[i].x + 1][monsterArray[i].y] != 3) {
+			monsterArray[i].x++;
+		}
+	}
+	
+	board[tempx][tempy]=wasFood[i];
+	
+
+	wasFood[i]=board[monsterArray[i].x][monsterArray[i].y];
+
+
+	board[monsterArray[i].x][monsterArray[i].y] = 3;
+	
+}
+}
+
+
 function UpdatePosition() {
-	//foodCount=$("#food").val();//???????????
 	board[shape.i][shape.j] = 0; // מוחקים את פקמן מהמערך
 	var x = GetKeyPressed(); //  מושכים את המיקום האחרון של הפקמן ומשנים את המיקום בהתאם
+	
 	if (x == 1) {
 		if (shape.j > 0 && board[shape.i][shape.j - 1] != 4) {
 			shape.j--;
@@ -268,15 +332,19 @@ function UpdatePosition() {
 			shape.i++;
 		}
 	}
+	updateMonsters();
 	if (board[shape.i][shape.j] == 1) {  // אם זה אוכל נעדכן את הניקוד של המשתמש
 		score=score+5;
 	} else if (board[shape.i][shape.j] == 5) {  // אם זה אוכל נעדכן את הניקוד של המשתמש
 		score=score+25;
 	}else if (board[shape.i][shape.j] == 6) {  // אם זה אוכל נעדכן את הניקוד של המשתמש
 		score=score+15;
-	}else if(board[shape.i][shape.j]==3){
+	}else if(board[shape.i][shape.j]==3){ /// מפלצת
 		score=score-10;
 		life--;
+		shape.i=7;
+		shape.j=7;
+
 	} else if(board[shape.i][shape.j]==7){
 		life++;
 		score=score+5;
@@ -284,22 +352,28 @@ function UpdatePosition() {
 	else if(board[shape.i][shape.j]==8){
 			gameTime=gameTime+30;
 	}
+
 	
 	board[shape.i][shape.j] = 2; // משנים את מיקום הפקמן במערך
 	var currentTime = new Date(); 
 	time_elapsed = (currentTime - start_time) / 1000; // כמות הזמן שנשארת
 	if(life==0){
 		window.clearInterval(interval);
-			window.alert("Loser!");
+		window.clearInterval(interval2);
+		window.alert("Loser!");
 	}
 	if(time_elapsed>gameTime){
 		if(score<=100){
 			window.clearInterval(interval);
-			window.alert("Yoa are better than " + score + " points!");
+			window.clearInterval(interval2);
+			// window.alert("Yoa are better than " + score + " points!");
+			$("#timeout").css("display","block");
+
 		}
 		else{
 			window.clearInterval(interval);
-			window.alert("Winner!");
+			window.clearInterval(interval2);
+			window.po("Winner!");
 		}
 		 /// בגלל הזמן
 	}
@@ -323,6 +397,7 @@ function UpdatePosition() {
 }
 function game() 
 {
+$("#timeout").css("display","none");
  $("#open").css("display", "none");
  $("#registerPage").css("display","none");
  $("#loginPage").css("display","none");
