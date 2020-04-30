@@ -57,6 +57,7 @@ var wasEaten=false;
 var music=new Audio("images/music.mp3");
 
 function Start() {
+	life=5;
 	board = new Array();
 	wasEaten=false;
 	score = 0;
@@ -69,18 +70,18 @@ function Start() {
 	var foodCount=food_remain;
 	for (var i = 0; i < 14; i++) {  //// השמת קירות
 		board[i] = new Array();
-	
-		for (var j = 0; j < 10; j++) {
-			if((i == 13 && j == 9 && numMonster<4) ){
+		for (var j = 0; j < 8; j++) {
+
+			if((i == 13 && j == 7 && numMonster<4) ){
 				board[i][j]=9; //// alcogel
 				alcogel.x=i;
 				alcogel.y=j;
 			}
-			else if(
+			else if(//monsters
 				(i == 0 && j == 0) ||
-				(i == 0 && j == 9) ||
+				(i == 0 && j == 7) ||
 				(i == 13 && j == 0) ||
-				(i == 13 && j == 9) 
+				(i == 13 && j == 7) 
 				
 			){
 				if(monstersLeft<numMonster){
@@ -92,7 +93,7 @@ function Start() {
 				}
 
 			}
-			else if((i == 13 && j == 8&& numMonster==4) ){
+			else if((i == 13 && j == 6 && numMonster==4) ){
 				board[i][j]=9; //// alcogel
 				alcogel.x=i;
 				alcogel.y=j;
@@ -104,14 +105,14 @@ function Start() {
 				(i == 3 && j == 5) ||
 				(i == 6 && j == 1) ||
 				(i == 6 && j == 2) ||
-				(i==6 && j==8) ||
-				(i==5 && j==8) ||
+				(i==6 && j==7) ||
+				(i==5 && j==7) ||
+				(i==12 && j==6)||
 				(i==12 && j==7)||
-				(i==12 && j==8)||
-				(i==13 && j==3)||
-				(i==12 && j==3)||
-				(i==11 && j==3)||
-				(i==11 && j==4)
+				(i==13 && j==2)||
+				(i==12 && j==2)||
+				(i==11 && j==2)||
+				(i==11 && j==3)
 		
 			) {
 				board[i][j] = 4; ///  קירות=4
@@ -172,8 +173,8 @@ function Start() {
 		false
 	);
 	if(shape.i == undefined || shape.j == undefined){
-		shape.i =7;
-		shape.j = 7;
+		shape.i =4;
+		shape.j = 4;
 	}
 	interval=setInterval(UpdatePosition,250);
 	// interval2 = setInterval(updateMonsters, 250); // כל 250 מיל שניות ישנה את מיקום הפקמן
@@ -184,20 +185,20 @@ function setMovingMonsterArray(){
 	monsterStart[0].x=0;
 	monsterStart[0].y=0;
 	monsterStart[1].x=0;
-	monsterStart[1].y=9;
+	monsterStart[1].y=7;
 	monsterStart[2].x=13;
 	monsterStart[2].y=0;
 	monsterStart[3].x=13;
-	monsterStart[3].y=9;
+	monsterStart[3].y=7;
 }
 
 
 function findRandomEmptyCell(board) { // מוצאת תאים רנדומלים ריקים
 	var i = Math.floor(Math.random() * 13 + 1);
-	var j = Math.floor(Math.random() * 9 + 1);
+	var j = Math.floor(Math.random() * 7 + 1);
 	while (board[i][j] != 0) {
 		i = Math.floor(Math.random() * 13 + 1);
-		j = Math.floor(Math.random() * 9 + 1);
+		j = Math.floor(Math.random() * 7 + 1);
 	}
 	return [i, j];
 }
@@ -232,8 +233,11 @@ function Draw(y) {
 	mediumP.value=middlep;
 	lowP.value=mainp;
 	upButton.value=upName;
+	downButton.value=downName;
+	leftButton.value=leftName;
+	rightButton.value=rightName;
 	for (var i = 0; i < 14; i++) {
-		for (var j = 0; j < 10; j++) {
+		for (var j = 0; j < 8; j++) {
 			var center = new Object(); // איפה מציירים
 			center.x = i * 60 + 30; 
 			center.y = j * 60 + 30;
@@ -340,7 +344,7 @@ function updateMonsters(){
 		}
 	}
 	if (move == 2) {
-		if (monsterArray[i].y < 9 && board[monsterArray[i].x][monsterArray[i].y + 1] != 4 &&
+		if (monsterArray[i].y < 7 && board[monsterArray[i].x][monsterArray[i].y + 1] != 4 &&
 			board[monsterArray[i].x][monsterArray[i].y + 1] != 3 && board[monsterArray[i].x][monsterArray[i].y + 1] != 9) {
 			monsterArray[i].y++;
 		}
@@ -381,7 +385,7 @@ function moveAlco(){
 			}
 		}
 		if (move == 2) {
-			if (alcogel.y < 9 && board[alcogel.x][alcogel.y + 1] != 4 &&
+			if (alcogel.y < 7 && board[alcogel.x][alcogel.y + 1] != 4 &&
 				board[alcogel.x][alcogel.y + 1] != 3) {
 					alcogel.y++;
 			}
@@ -400,10 +404,7 @@ function moveAlco(){
 		}
 		
 		board[tempx][tempy]=alcoFood;
-		
-	
 		alcoFood=board[alcogel.x][alcogel.y];
-	
 	
 		board[alcogel.x][alcogel.y] = 9;
 		
@@ -421,7 +422,7 @@ function UpdatePosition() {
 		}
 	}
 	if (x == 2) {
-		if (shape.j < 9 && board[shape.i][shape.j + 1] != 4) {
+		if (shape.j < 7 && board[shape.i][shape.j + 1] != 4) {
 			shape.j++;
 		}
 	}
@@ -449,8 +450,8 @@ function UpdatePosition() {
 	}else if(board[shape.i][shape.j]==3){ /// מפלצת
 		score=score-10;
 		life--;
-		shape.i=7;
-		shape.j=7;
+		shape.i=4;
+		shape.j=4;
 		for( var n=0; n<numMonster;n++){
 			board[monsterArray[n].x][monsterArray[n].y]=0;
 			monsterArray[n].x=monsterStart[n].x;

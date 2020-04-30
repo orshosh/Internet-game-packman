@@ -88,46 +88,43 @@
 			  </form>
 		</div>
 		<div id="gameC">
-		<!-- <div class="gameWindow" id="details">
->
-		</div> -->
+		
 		<div class="gameWindow" id="game">
-			<canvas id="canvas" height="600" width="840"></canvas>
-			<!-- <div id="playlist">
-				<audio  autoplay loop>
-					<source src="images/music.mp3" type="audio/mpeg">
-				</audio>
-			</div> -->
-
-			<!-- <iframe src="images/music.mp3" allow="autoplay" style="display:none" id="iframeAudio">
-			</iframe>  -->
+			<canvas id="canvas" height="475" width="845"></canvas>
+		
 			<div id="details">
 			<label for="playerName">USER NAME:</label>
-			<input id="playerName" type="text" >
+			<input class="detail" id="playerName" type="text" >
 			<label for="lblTime">TIME:</label>
-			<input id="lblTime" type="text" />
+			<input class="detail" id="lblTime" type="text" />
 			<label for="lblScore">SCORE:</label>
-			<input id="lblScore" type="text" >
-			<!-- <label for="totalTime">TOTAL TIME:</label>
-			<input id="totalTime" type="text" > -->
-			<label for="lives">LIVES:</label>
-			<input id="lives" type="text" >
-			<label for="monster">NUMBER OF MONSTERS:</label>
-			<input id="monster" type="text" >
-			<label for="numFood">TOTAL FOOD:</label>
-			<input id="numFood" type="text" >
-			<label for="highP">25 POINTS:</label>
-			<input id="highP" type="text" >
-			<label for="mediumP">15 POINTS:</label>
-			<input id="mediumP" type="text" >
-			<label for="lowP">5 POINTS:</label>
-			<input id="lowP" type="text" >
-			<label for="upButton">UP:</label>
-			<input id="upButton" type="text" >
-			<button id="restart" onclick="setVariables()">RESTART</button>
-			<button id="backToSettings" onclick="set()">SETTINGS</button>
-
+			<input id="lblScore"class="detail"  type="text" >
 			
+			<label for="lives">LIVES:</label>
+			<input id="lives" class="detail"  type="text" >
+			<label for="monster">NUMBER OF MONSTERS:</label>
+			<input id="monster" class="detail"  type="text" >
+			<label for="numFood">TOTAL FOOD:</label>
+			<input id="numFood" class="detail"  type="text" >
+			<label for="highP">25 POINTS:</label>
+			<input id="highP" class="detail" type="text" >
+			<label for="mediumP">15 POINTS:</label>
+			<input id="mediumP" class="detail"  type="text" >
+			<label for="lowP">5 POINTS:</label>
+			<input id="lowP" class="detail"  type="text" >
+
+			<div id="gameKey"> 
+			<label for="upButton">UP:</label>
+			<input id="upButton" class="detail"  type="text" >
+			<label for="downButton">DOUN:</label>
+			<input id="downButton" class="detail"  type="text" >
+			<label for="leftButton">LEFT:</label>
+			<input id="leftButton" class="detail"  type="text" >
+			<label for="rightButton">RIGHT:</label>
+			<input id="rightButton" class="detail"  type="text" >
+		</div>
+			<button id="restart" class="detail"  onclick="setVariables()">RESTART</button>
+			<button id="backToSettings" class="detail"  onclick="set()">SETTINGS</button>	
 		</div>
 		</div>
 		<div id=dialogGame>

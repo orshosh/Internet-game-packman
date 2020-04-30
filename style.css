@@ -289,12 +289,7 @@ html{
 }
 
 
-#canvas{
-  border:45px solid grey;
-  width: 70%;
-  margin-top: 10%;
 
-}
 #keyMassege{
   display: none;
 
@@ -358,28 +353,40 @@ input[type=number]:focus, select{
   font-family: Comic sans MS;
   font-weight: bold;
 }
-/* #details{
-  margin-top: 0;
-  margin-left: 70%;
+#canvas{
+  border:15px solid grey;
+  width: 70%;
+  margin-top: 4%;
 }
-#game{
-  margin-top: 0;
-} */
-/* .gameWindow{
-  top: 0;
-  margin: 0;
-} */
+input[class = detail]{
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: white;
+  width: 25%;
+  padding: 5px;
+  display: flex;
+ flex-direction: column;
 
 
+}
+#gameKey{
+  display: flex;
+ flex-direction: row;
+ width: 100%;
+ margin-top: 4%;
 
-
+}
 
 #details{
-  display: table-row;
+  width: 30%;
+
 }
 
 #game{
-  display: -moz-grid-line;
+ width: 100%;
+ display: flex;
+ flex-direction: row;
+
 }
 
 footer{
