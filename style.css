@@ -358,28 +358,87 @@ input[type=number]:focus, select{
   width: 70%;
   margin-top: 4%;
 }
+
 input[class = detail]{
   border: 1px solid #ccc;
   border-radius: 5px;
   background: white;
-  width: 25%;
+  width: 60px;
   padding: 5px;
+  font-size: 12px;
+
+}
+input[class = long]{
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: white;
+  width: 100px;
+  padding: 5px;
+  font-size: 12px;
+
+}
+
+#gameKey{
+  margin-left: 10%;
+ flex-direction: row;
+ width: 100%;
+}
+#first,#second,#zero{
   display: flex;
- flex-direction: column;
+  flex-direction: row;
+  padding-bottom: 20px;
+  display: inline-block;
+  width: 100%;
+   
+}
+#second{
+  margin-left: 5%;
+}
+
+#gamebtn{
+  flex-direction: row;
+  margin-left: 30%;
+  padding-top: 15px;
+
+}
+#restart,#backToSettings{
+  
+  font-family: Comic sans MS;
+  font-size: 10px;
+  font-weight: bold;
+  background-color: #d2b1f3;
+  color: black;
+  padding: 15px 15px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
 
 
 }
-#gameKey{
+
+label[for=playerName]{
+  font-weight: bold;
+  color: #b366ff;
+  margin-left: 20%;
+}
+
+#theird{
   display: flex;
- flex-direction: row;
- width: 100%;
- margin-top: 4%;
+  flex-direction: column;
+  padding-bottom: 20px;
+  margin-left: 30%;
 
 }
 
 #details{
   width: 30%;
-
+  font-family: Comic sans MS;
+  margin-top: 60px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  
 }
 
 #game{
@@ -388,6 +447,7 @@ input[class = detail]{
  flex-direction: row;
 
 }
+
 
 footer{
   padding-top: 0;

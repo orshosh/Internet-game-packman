@@ -93,38 +93,54 @@
 			<canvas id="canvas" height="475" width="845"></canvas>
 		
 			<div id="details">
-			<label for="playerName">USER NAME:</label>
+			
+			<div id="zero">
+			<label class="detail" for="playerName" >USER NAME:</label>
 			<input class="detail" id="playerName" type="text" >
-			<label for="lblTime">TIME:</label>
+			
+		</div> 
+		<div id="first">
+			<label class="detail" for="lblTime">TIME:</label>
 			<input class="detail" id="lblTime" type="text" />
-			<label for="lblScore">SCORE:</label>
+			<label class="detail"for="lblScore">SCORE:</label>
 			<input id="lblScore"class="detail"  type="text" >
 			
-			<label for="lives">LIVES:</label>
+			<label class="detail" for="lives">LIVES:</label>
 			<input id="lives" class="detail"  type="text" >
-			<label for="monster">NUMBER OF MONSTERS:</label>
+			</div>
+			
+			<div id="second">
+			<label class="detail" for="monster">MONSTERS:</label>
 			<input id="monster" class="detail"  type="text" >
-			<label for="numFood">TOTAL FOOD:</label>
+			<label class="detail" for="numFood">TOTAL FOOD:</label>
 			<input id="numFood" class="detail"  type="text" >
-			<label for="highP">25 POINTS:</label>
-			<input id="highP" class="detail" type="text" >
-			<label for="mediumP">15 POINTS:</label>
-			<input id="mediumP" class="detail"  type="text" >
-			<label for="lowP">5 POINTS:</label>
-			<input id="lowP" class="detail"  type="text" >
-
-			<div id="gameKey"> 
-			<label for="upButton">UP:</label>
-			<input id="upButton" class="detail"  type="text" >
-			<label for="downButton">DOUN:</label>
-			<input id="downButton" class="detail"  type="text" >
-			<label for="leftButton">LEFT:</label>
-			<input id="leftButton" class="detail"  type="text" >
-			<label for="rightButton">RIGHT:</label>
-			<input id="rightButton" class="detail"  type="text" >
 		</div>
+		<div id="theird">
+			<label class="long" for="highP">25 POINTS:</label>
+			<input id="highP" class="long" type="text">
+			<label class="long" for="mediumP">15 POINTS:</label>
+			<input id="mediumP" class="long"  type="text" >
+			<label class="long" for="lowP">5 POINTS:</label>
+			<input id="lowP" class="long"  type="text" >
+		</div>
+			<div id="gameKey"> 
+			<!-- <label class="long" for="upButton">UP:</label> -->
+			<img src="images/up.png" width="30px" height="30px">
+			<input id="upButton" class="long"  type="text" >
+			<!-- <label class="long" for="downButton">DOWN:</label> -->
+			<img src="images/down.png" width="30px" height="30px">
+			<input id="downButton" class="long"  type="text" ></br>
+			<img src="images/left.png" width="30px" height="30px">
+			<!-- <label class="long" for="leftButton">LEFT:</label> -->
+			<input id="leftButton" class="long"  type="text" >
+			<img src="images/right.png" width="30px" height="30px">
+			<!-- <label class="long" for="rightButton">RIGHT:</label> -->
+			<input id="rightButton" class="long"  type="text" >
+		</div>
+		<div id="gamebtn">
 			<button id="restart" class="detail"  onclick="setVariables()">RESTART</button>
 			<button id="backToSettings" class="detail"  onclick="set()">SETTINGS</button>	
+		</div>
 		</div>
 		</div>
 		<div id=dialogGame>

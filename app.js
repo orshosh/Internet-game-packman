@@ -112,7 +112,14 @@ function Start() {
 				(i==13 && j==2)||
 				(i==12 && j==2)||
 				(i==11 && j==2)||
-				(i==11 && j==3)
+				(i==11 && j==3)||
+				(i==2 && j==0)||
+				(i==2 && j==1)||
+				(i==3 && j==1)||
+				(i==1 && j==7) ||
+				(i==1 && j==6)||
+				(i==1 && j==5)||
+				(i==8 && j==4)
 		
 			) {
 				board[i][j] = 4; ///  קירות=4
@@ -223,7 +230,7 @@ function GetKeyPressed() {
 function Draw(y) {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score; // עדכון התוצאה
-	lblTime.value =gameTime-time_elapsed; // עדכון הזמן
+	lblTime.value =parseInt(gameTime-time_elapsed); // עדכון הזמן
 	playerName.value=userName;
 	lives.value=life;
 	// totalTime.value=gameTime;
