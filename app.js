@@ -169,6 +169,7 @@ function Start() {
 		"keydown",
 		function(e) {
 			keysDown[e.keyCode] = true; // כדי לדעת שמקש נלחץ
+			e.preventDefault();
 		},
 		false
 	);
@@ -176,6 +177,7 @@ function Start() {
 		"keyup",
 		function(e) {
 			keysDown[e.keyCode] = false; // המשתמש עזב את האצבע מהמקש
+			e.preventDefault();
 		},
 		false
 	);
@@ -184,7 +186,6 @@ function Start() {
 		shape.j = 4;
 	}
 	interval=setInterval(UpdatePosition,250);
-	// interval2 = setInterval(updateMonsters, 250); // כל 250 מיל שניות ישנה את מיקום הפקמן
 	
 }
 
@@ -230,10 +231,13 @@ function GetKeyPressed() {
 function Draw(y) {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score; // עדכון התוצאה
-	lblTime.value =parseInt(gameTime-time_elapsed); // עדכון הזמן
+	lblTime.value =parseInt(gameTime-time_elapsed); 
+	if(lblTime.value <= 10){
+		$("#lblTime").css("color","red");
+		$("#lblTime").css("font-weight","bold");
+	}
 	playerName.value=userName;
 	lives.value=life;
-	// totalTime.value=gameTime;
 	monster.value=numMonster;
 	numFood.value=food_remain;
 	highP.value=lowp;
@@ -483,22 +487,19 @@ function UpdatePosition() {
 	board[shape.i][shape.j] = 2; // משנים את מיקום הפקמן במערך
 	var currentTime = new Date(); 
 	time_elapsed = (currentTime - start_time) / 1000; // כמות הזמן שנשארת
+	
 	if(life==0){
 		window.clearInterval(interval);
-		// window.clearInterval(interval2);
 		music.pause();
 		$("#loser").css("display","block");
-		
 	}
 	if(time_elapsed>gameTime){
 		if(score<=100){
 			window.clearInterval(interval);
-			// window.clearInterval(interval2);	
 			timeEnd();
 		}
 		else{
 			window.clearInterval(interval);
-			// window.clearInterval(interval2);
 			music.pause();
 			$("#win").css("display","block");
 		}

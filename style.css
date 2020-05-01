@@ -40,7 +40,6 @@ html{
   text-shadow: 2px 2px 3px #c6affd;
   text-align: center;
   font-size: 110px;
-  padding-top: 20%;
 } 
 .flex-container{
   display: flex;
@@ -118,7 +117,7 @@ html{
   }
   
   /* Set a style for the submit/register button */
-  .registerbtn ,.loginbtn ,.play, .randomSet{
+  .registerbtn ,.loginbtn{
     font-family: Comic sans MS;
     font-size: 20px;
     font-weight: bold;
@@ -134,10 +133,24 @@ html{
     border-radius: 12px;
 
   }
+  .play,.randomSet{
+    font-family: Comic sans MS;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #b366ff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    opacity: 0.9;
+    margin-left: 90px;
+    margin-top: 30px;
+    border-radius: 12px;
+    display: inline-block;
 
-  .randomSet{
-    margin-left: 60%;
   }
+
 
   .registerbtn:hover {
     opacity:1;

@@ -90,7 +90,7 @@
 		<div id="gameC">
 		
 		<div class="gameWindow" id="game">
-			<canvas id="canvas" height="475" width="845"></canvas>
+			<canvas id="canvas" height="475" width="840"></canvas>
 		
 			<div id="details">
 			
@@ -124,17 +124,13 @@
 			<input id="lowP" class="long"  type="text" >
 		</div>
 			<div id="gameKey"> 
-			<!-- <label class="long" for="upButton">UP:</label> -->
 			<img src="images/up.png" width="30px" height="30px">
 			<input id="upButton" class="long"  type="text" >
-			<!-- <label class="long" for="downButton">DOWN:</label> -->
 			<img src="images/down.png" width="30px" height="30px">
 			<input id="downButton" class="long"  type="text" ></br>
 			<img src="images/left.png" width="30px" height="30px">
-			<!-- <label class="long" for="leftButton">LEFT:</label> -->
 			<input id="leftButton" class="long"  type="text" >
 			<img src="images/right.png" width="30px" height="30px">
-			<!-- <label class="long" for="rightButton">RIGHT:</label> -->
 			<input id="rightButton" class="long"  type="text" >
 		</div>
 		<div id="gamebtn">
@@ -192,19 +188,15 @@
 		  <hr>
 		  
 		  <div class="box_keybtn">
-		  <!-- <label for="up"><b>Up key:</b></label> -->
 		  <img src="images/up.png" sizes="10%">
 		  <input type="button" class="keyBtn" id="up" name="up" value="up">
 
-		  <!-- <label for="down"><b>Down key</b></label> -->
 		  <img src="images/down.png">
 		  <input type="button" class="keyBtn" name="down" id="down" value="down" >
 
-		  <!-- <label for="left"><b>Left key</b></label> -->
 		  <img src="images/left.png">
 		  <input type="button" class="keyBtn" name="left" id="left" value="left">
 
-		  <!-- <label for="right"><b>Right key</b></label> -->
 		  <img src="images/right.png">
 		  <input type="button" class="keyBtn" name="right" id="right" value="right" >
 		</div>
@@ -242,13 +234,12 @@
 			<option value="Black">black</option>
 			<option value="Silver">silver</option>
 			</select>
-		
 		</br>
-		  <br>
-		  <br>
+
 		  <button type="submit" class="play" onclick="checkSetting()" >Play</button>
+		  <input type="button" class="randomSet" onclick="randomSettings()" value="Random" ></input>
 	  </form>
-	  <button type="submit" class="randomSet" onclick="randomSettings()" >Random</button>
+	  
 	</div>
 	
 		</div>
