@@ -227,6 +227,18 @@ function GetKeyPressed() {
 	}
 
 }
+// function welcomeDrow(){
+// 	openCanvas.width = openCanvas.width;
+// 	context.beginPath();
+// 	context.arc(0, 0, 30, 0.15 * Math.PI+0.5*Math.PI, 1.85 * Math.PI+0.5*Math.PI); // half circle
+// 	context.lineTo(0, 0);
+// 	context.fillStyle = yellow; //color
+// 	context.fill(); // מסיים לצייר את הפקמן
+// 	context.beginPath(); /// ציור העין של הפקמן
+// 	context.arc(0 +15, 0 -5, 5, 0, 2 * Math.PI); // circle
+// 	context.fillStyle = "black"; //color
+// 	context.fill();
+// }
 
 function Draw(y) {
 	canvas.width = canvas.width; //clean board
@@ -235,6 +247,10 @@ function Draw(y) {
 	if(lblTime.value <= 10){
 		$("#lblTime").css("color","red");
 		$("#lblTime").css("font-weight","bold");
+	}else{
+		$("#lblTime").css("color","black");
+		$("#lblTime").css("font-weight","normal");
+
 	}
 	playerName.value=userName;
 	lives.value=life;

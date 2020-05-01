@@ -120,6 +120,7 @@ function welcome(){
   $("modelBox").css("display","none");
   $("#settings").css("display","none");
   $("#open").css("display", "block");
+ 
 }
 
 function register() 
