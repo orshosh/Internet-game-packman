@@ -22,7 +22,7 @@
 		  </ul>
 		</div>
 
-		<div class="container">
+		<div class="container" id="windows">
 		<div class="openWindow" id="open">
 		
 			<div id="mainPage">Corona</div>	
@@ -34,7 +34,7 @@
 		</div>
 		<div id="registerPage" >
 			<form class="regWindow"  name="formR" id="formR">
-				<div class="box">
+				<div class="boxR">
 				  <h1 id="regPage">Register</h1>
 				  <p >Please fill in this form to create an account.</p>
 				
@@ -78,10 +78,10 @@
 
 				  <label for="psw2"><b>Password</b></label>
 				  <input type="password" placeholder="*************" name="psw2" id="psw2" >
-
-				  <p><a href="#" ></a></p>
+				
 				  <button type="submit" class="loginbtn" onclick="checkUser()" >Log in</button>
 				  <p id="signinLink">Don't have an account? <a href="#" onclick="register()">Register</a>.</p>
+				
 				</div>
 			  </form>
 		</div>
@@ -177,7 +177,7 @@
 
 
 <div id="settings" class="settings">
-	<div class="box" id="setBox">
+	<div class="boxS" id="setBox">
 	<form class="settingForm" name="settingForm" id="settingForm">
 		
 		  <h1 id="setPage">Settings</h1>
@@ -185,36 +185,39 @@
 		  <hr>
 		  
 		  <div class="box_keybtn">
-		  <img src="images/up.png" sizes="10%">
+		  <img for="up" src="images/up.png" sizes="10%">
 		  <input type="button" class="keyBtn" id="up" name="up" value="up">
 
-		  <img src="images/down.png">
+		  <img for="down" src="images/down.png">
 		  <input type="button" class="keyBtn" name="down" id="down" value="down" >
 
-		  <img src="images/left.png">
+		  <img for="left" src="images/left.png">
 		  <input type="button" class="keyBtn" name="left" id="left" value="left">
 
-		  <img src="images/right.png">
+		  <img for="right" src="images/right.png">
 		  <input type="button" class="keyBtn" name="right" id="right" value="right" >
 		</div>
 		<p id="keyMassege">Press new key..</p>
-		  <label for="food"><b>Number of food:</b></label>
-		  <input type="number" min="50" max="90" name="food" id="food" >
-		</br>
-		  <label for="gameT"><b>Game's length:</b></label>
-		  <input type="number" min="60"  name="gameT" id="gameT" >
-		</br>
-		<label for="monsterNum"><b>Number of monsters:</b></label>
-		<input type="number" min="1"  max="4" name="monsterNum" id="monsterNum" >
-	  </br>
-
+		
+		  <label class="btnN" for="food"><b>Number of food:</b>
+			<input type="number" min="50" max="90" name="food" id="food" >
+		</label>
+	</br>
+		  <label class="btnN" for="gameT"><b>Game's length:</b>
+			<input type="number" min="60"  name="gameT" id="gameT" >
+		</label>
+	</br>
+		<label class="btnN" for="monsterNum"><b>Number of monsters:</b>
+			<input type="number" min="1"  max="4" name="monsterNum" id="monsterNum" >
+		</label>
+	</br>
+	  <div id="ballS">
 		  <label class="balls" for="cars">Pick a color for the 5 p' food:</label>
 			<select id="mainC">
 			<option value="CornflowerBlue">blue</option>
 			<option value="Aquamarine">green</option>
 			<option value="DarkGray">gray</option>
 			</select>
-
 		</br>
 			<label class="balls" for="cars">Pick a color for the 15 p' food:</label>
 			<select id="middleC" >
@@ -223,7 +226,6 @@
 			<option value="Coral">orange</option>
 			
 			</select>
-
 		</br>
 			<label class="balls" for="cars">Pick a color for the 25 p' food:</label>
 			<select id="lowC" >
@@ -232,23 +234,22 @@
 			<option value="Silver">silver</option>
 			</select>
 		</br>
-
+	</div>
+		<div id="btnS">
 		  <button type="submit" class="play" onclick="checkSetting()" >Play</button>
 		  <input type="button" class="randomSet" onclick="randomSettings()" value="Random" ></input>
+		</div>
 	  </form>
 	  
 	</div>
-	
 		</div>
-
-		
-
 	</div>
 	<footer >
 		Created by: Or Shoshani & Chen Shoresh 
 		<br>
 		Contact information: <a href="mailto:chenshoresh95@post.bgu.ac.il">chenshoresh95@post.bgu.ac.il</a>
-	  </footer>
+	 </footer>
+	
 	
 
 	<script type="text/javascript">

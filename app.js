@@ -554,6 +554,7 @@ $("#loser").css("display","none");
  $("#loginPage").css("display","none");
  $("#settings").css("display","none");
  $("#gameC").css("display","block");
+ $("footer").css("display","none");
  context = canvas.getContext("2d");
  before=4;
 setVariables();

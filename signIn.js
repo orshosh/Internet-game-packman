@@ -7,7 +7,6 @@ $(document).ready(function() {
   
     users[0]="p";
     passwords[0]="p";
-    // $("registerPage").urlParams.append('page',1);
 
 });
 
@@ -51,7 +50,7 @@ function checkInput(){
           name: {
               required: "Please enter your name",
           },
-          userName: "Please enter your user name",
+        userName: "Please enter your user name",
           psw: {
             required: "Please provide a password",
             minlength: "Your password must be at least 6 characters long"
@@ -71,12 +70,10 @@ function checkInput(){
 
       uName = $("#userName").val();
       localStorage.setItem("uName",uName);
-      // users.push(uName);
       uPass = $("#psw").val();
       localStorage.setItem("uPass",uPass);
       passwords.push(uPass);
-      
-   
+
 }
 
 function checkUser(){
