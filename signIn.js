@@ -123,6 +123,7 @@ function welcome(){
 function register() 
 {
   music.pause();
+  document.getElementById("formR").reset();
  $("#open").css("display", "none");
  $("#loginPage").css("display","none");
  $("#gameC").css("display","none");
@@ -133,6 +134,7 @@ function register()
 function logIn() 
 {
   music.pause();
+  document.getElementById("logR").reset();
  $("#open").css("display", "none");
  $("#registerPage").css("display","none");
  $("#gameC").css("display","none");

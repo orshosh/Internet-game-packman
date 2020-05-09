@@ -230,9 +230,39 @@ div.box{
 
   }
 
+  .header{
+    background-image: url('images/model2.jpeg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: fixed;
+    width: 40%;
+    left: 60%;
+    height: 60px;
+    display: flex;
+    flex: 1;
+  flex-direction: row;
+  top: 0;
+  z-index: 99;
+  }
+
+  #headerDeatails{
+    text-align: center;
+    width: 80%;
+    font-family: Comic sans MS;
+    font-size: 18px;
+    padding-top: 15px;
+
+    
+  }
+  #logoHeader{
+    text-align: right;
+    width: 20%;
+  
+  }
+
   .toolBar {
     position: fixed;
-    width: 93%;
+    width: 53%;
     left: 7%;
     height: 60px;
     background-image: url('images/model2.jpeg');
@@ -284,9 +314,7 @@ div.box{
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4);
-  
-  
+
   }
 
   .modal{
@@ -322,9 +350,10 @@ div.box{
   background-repeat: no-repeat;
   overflow: auto;
 }
-#settingForm{
+
+/* #settingForm{
   height: auto;
-}
+} */
 
 
 
@@ -337,9 +366,7 @@ div.box{
     padding: 15px 15px;
     border: none;
     cursor: pointer;
-    opacity: 0.9;
-   
-   
+    opacity: 0.9; 
     
 }
 .box_keybtn img{
@@ -372,7 +399,7 @@ div.box{
   font-size: 14px;
   box-sizing:border-box;
   padding:0px 16px 5px 16px;
-  width: 49%;
+  width: 52%;
   margin-left: 27%;
   background-color: white;
   box-shadow: 5px 5px 5px #ccc;
@@ -388,7 +415,7 @@ div.box{
 input[type=number], select{
   width: 20%;
   padding: 5px;
-  margin: 0px 0 5px 0;
+  margin: 0px 0 2px 0;
   display: inline-block;
   font-family: Comic sans MS;
   border: 1px solid #ccc;
@@ -414,7 +441,7 @@ input[type=number]:focus, select{
   font-weight: bold;
 }
 #canvas{
-  border:15px solid grey;
+  border:10px solid grey;
   width: 70%;
   margin-top: 4%;
   
@@ -424,10 +451,17 @@ input[class = detail]{
   border: 1px solid #ccc;
   border-radius: 5px;
   background: white;
-  width: 60px;
+  width: 45px;
   padding: 5px;
   font-size: 12px;
-
+}
+input[id = playerName]{
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: white;
+  width:70px;
+  padding: 5px;
+  font-size: 12px;
 }
 input[class = long]{
   border: 1px solid #ccc;
@@ -436,23 +470,26 @@ input[class = long]{
   width: 100px;
   padding: 5px;
   font-size: 12px;
-
 }
 
 #gameKey{
-  margin-left: 10%;
+margin-left: 5%;
  flex-direction: row;
  width: 100%;
 }
-#first,#second,#zero{
+#first,#second{
   display: flex;
   flex-direction: row;
   padding-bottom: 20px;
   display: inline-block;
   width: 100%;
-
+  font-size: 100%;
+}
+#zero{
+  display: flex;
+  padding-bottom: 5px;
+  padding-top: 10px;
   font-size: 130%;
-   
 }
 #second{
   margin-left: 5%;
@@ -466,7 +503,6 @@ input[class = long]{
 
 }
 #restart,#backToSettings{
-  
   font-family: Comic sans MS;
   font-size: 10px;
   font-weight: bold;
@@ -476,8 +512,6 @@ input[class = long]{
   border: none;
   cursor: pointer;
   opacity: 0.9;
-
-
 }
 
 label[for=playerName]{
@@ -495,10 +529,9 @@ label[for=playerName]{
 }
 
 #details{
- 
  background-color:#f3e6ff ;
   box-sizing:border-box;
-  padding:0px 16px 0px 18px;
+  padding:0px 16px 0px 20px;
   font-family: Comic sans MS;
   margin-top: 4%;
   height: auto;
@@ -557,13 +590,10 @@ height: 10%;
     font-weight: bold;
     background-color: white;
     color: #b366ff;
-    /* padding: 10px 15px; */
     border: none;
     cursor: pointer;
     width: 30%;
     opacity: 0.9;
-    /* margin-left: 9%; */
-    /* margin-top: -1.5%; */
     border-radius: 12px;
     margin-left: 0%;
     
